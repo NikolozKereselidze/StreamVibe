@@ -1,0 +1,88 @@
+.wrapper,
+.logo,
+.navigation > ul,
+.icons {
+  display: flex;
+}
+
+.wrapper {
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.4rem 8rem;
+}
+
+.logo {
+  gap: 4px;
+}
+
+.navigation {
+  padding: 1.8rem 2rem;
+  align-items: center;
+  border-radius: 1rem;
+  border: 3px solid var(--Black-12);
+  background: var(--Black-06);
+}
+
+.navigation > ul {
+  gap: 1.6rem;
+}
+
+.navigation > ul > li {
+  list-style: none;
+}
+
+.nav {
+  color: var(--Grey-75);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 150%;
+  text-decoration: none;
+}
+
+.active {
+  color: #fff;
+  padding: 1.2rem 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--Black-10, #1a1a1a);
+  background: var(--Black-10, #1a1a1a);
+}
+
+.icons {
+  gap: 1.4rem;
+  align-items: center;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background-color: var(--Black-06);
+  opacity: 0;
+}
+
+.searchBar > input {
+  color: #fff;
+  background-color: transparent;
+  font-size: 1.4rem;
+  border: none;
+  outline: none;
+}
+
+.inputOnFocus {
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.searchBar > svg,
+.icons > svg {
+  height: 2.4rem;
+  width: 2.4rem;
+  color: #fff;
+}
+
+.icons > svg {
+  cursor: pointer;
+}

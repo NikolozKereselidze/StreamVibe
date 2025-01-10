@@ -1,11 +1,11 @@
 import "./App.css";
-import MovieSearch from "./test";
+import Search from "./components/Search";
 
 function App() {
   return (
     <>
       <div>
-        <MovieSearch />
+        <Search />
       </div>
     </>
   );

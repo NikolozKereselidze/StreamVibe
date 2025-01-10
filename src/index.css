@@ -1,68 +1,109 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* 2. Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --Red-99: #fffafa; /* Lightest */
+  --Red-95: #ffe5e5;
+  --Red-90: #ffcccc;
+  --Red-80: #ff9999;
+  --Red-60: #ff3333;
+  --Red-55: #ff1919; /* Base */
+  --Red-50: #ff0000;
+  --Red-45: #e50000; /* Darkest */
+
+  --Black-30: #4c4c4c; /* Very light black (greyish) */
+  --Black-25: #404040;
+  --Black-20: #333333;
+  --Black-15: #262626;
+  --Black-12: #1f1f1f;
+  --Black-10: #1a1a1a; /* Base */
+  --Black-08: #141414;
+  --Black-06: #0f0f0f; /* Pure black */
+
+  --Grey-99: #fcfcfd;
+  --Grey-97: #f7f7f8;
+  --Grey-95: #f1f1f3;
+  --Grey-90: #e4e4e7;
+  --Grey-75: #bfbfbf;
+  --Grey-70: #b3b3b3; /* Base */
+  --Grey-65: #a6a6a6;
+  --Grey-60: #999999;
+
+  --font-family-main: "Manrope", serif;
+}
+
+body {
+  font-family: var(--font-family-main);
+  background-color: #000;
+}
+
+html {
+  font-size: 62.5%;
 }

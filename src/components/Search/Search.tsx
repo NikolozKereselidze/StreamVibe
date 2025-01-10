@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { searchAll } from "../api/tmdbApi";
-import { SearchResult } from "../types/search";
-import logoIcon from "../assets/logo/logo-icon.svg";
-import logoName from "../assets/logo/logo-name.svg";
+import { searchAll } from "../../api/tmdbApi";
+import { SearchResult } from "../../types/search";
+import logoIcon from "../../assets/logo/logo-icon.svg";
+import logoName from "../../assets/logo/logo-name.svg";
 import { NavLink } from "react-router-dom";
 import { MagnifyingGlassIcon, BellIcon } from "@heroicons/react/24/outline";
-import styles from "../styles/Nav.module.css";
+import styles from "../../styles/Nav.module.css";
 import SearchInput from "./SearchInput";
+import SearchResults from "../Result/SearchResults";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -105,6 +106,7 @@ const Search = () => {
           <BellIcon />
         </div>
       </div>
+      <SearchResults results={results} />
     </>
   );
 };

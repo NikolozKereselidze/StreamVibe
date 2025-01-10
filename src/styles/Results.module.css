@@ -1,0 +1,94 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 2.4rem;
+  margin: 2vh 4vw;
+}
+
+.wrapper > div {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.wrapper > div:hover {
+  transform: scale(1.05) translateX(12px) translateY(-10px);
+  z-index: 100;
+}
+
+.wrapper > div > img {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.card {
+  position: relative;
+}
+
+.details {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--Black-12);
+  width: 100%;
+  padding: 2rem 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+.card:hover .details {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0s 0s;
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.age,
+.runtime,
+.season,
+.personName,
+.gender {
+  color: var(--Grey-75);
+  font-size: 1.4rem;
+}
+
+.age {
+  padding: 0 1.2rem;
+  border: 1px solid #fff;
+}
+
+.detailsFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  color: var(--Grey-90);
+}
+
+.detailsPerson {
+  gap: 1.4rem;
+}
+
+.detailsFooterPerson,
+.detailsHeaderPerson {
+  display: flex;
+  flex-direction: column;
+  /* text-align: center; */
+  gap: 0.4rem;
+  color: var(--Grey-70);
+}
+
+.detailsHeaderPerson > h3,
+.detailsFooterPerson > h3 {
+  color: #fff;
+}
+
+.knownFor {
+  font-size: 1.4rem;
+}

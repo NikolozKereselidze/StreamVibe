@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import styles from "../styles/Nav.module.css";
+import styles from "../../styles/Nav.module.css";
 
 interface SearchInputProps {
   query: string;

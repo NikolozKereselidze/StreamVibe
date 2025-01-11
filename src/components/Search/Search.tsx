@@ -9,7 +9,11 @@ import styles from "../../styles/Nav.module.css";
 import SearchInput from "./SearchInput";
 import SearchResults from "../Result/SearchResults";
 
-const Search = () => {
+interface SearchProps {
+  isHome?: boolean;
+}
+
+const Search: React.FC<SearchProps> = ({ isHome = false }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -18,6 +22,7 @@ const Search = () => {
 
   const handleSearch = () => {
     setError(null);
+
     searchAll(query)
       .then((res) => setResults(res))
       .catch((err) => setError(err.message));
@@ -25,6 +30,9 @@ const Search = () => {
 
   const searchToggle = () => {
     setShowSearch((prev) => !prev);
+    if (!showSearch) {
+      setResults([]);
+    }
   };
 
   const handleFocus = () => {
@@ -35,11 +43,12 @@ const Search = () => {
     setFocusInput(false);
     setShowSearch(false);
     setQuery("");
+    setResults([]);
   };
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${isHome && styles.homeNav}`}>
         <div className={styles.logo}>
           <img src={logoIcon} />
           <img src={logoName} />
@@ -106,7 +115,7 @@ const Search = () => {
           <BellIcon />
         </div>
       </div>
-      <SearchResults results={results} />
+      {results.length > 0 && <SearchResults results={results} />}
     </>
   );
 };

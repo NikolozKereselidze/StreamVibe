@@ -1,8 +1,8 @@
 import { SearchResult } from "../../types/search";
 import styles from "../../styles/Results.module.css";
-import MovieCard from "../Cards/MovieCard";
-import TvCard from "../Cards/TvCard";
-import PersonCard from "../Cards/PersonCard";
+import SearchMovieCad from "../Cards/SearchMovieCard";
+import SearchTvCard from "../Cards/SearchTvCard";
+import SearchPersonCard from "../Cards/SearchPersonCard";
 
 interface SearchResultItemProps {
   item: SearchResult;
@@ -11,9 +11,9 @@ interface SearchResultItemProps {
 const SearchResultItem: React.FC<SearchResultItemProps> = ({ item }) => {
   return (
     <div key={item.id} className={styles.card}>
-      {item.media_type === "movie" && <MovieCard item={item} />}
-      {item.media_type === "tv" && <TvCard item={item} />}
-      {item.media_type === "person" && <PersonCard item={item} />}
+      {item.media_type === "movie" && <SearchMovieCad item={item} />}
+      {item.media_type === "tv" && <SearchTvCard item={item} />}
+      {item.media_type === "person" && <SearchPersonCard item={item} />}
     </div>
   );
 };

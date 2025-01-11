@@ -1,0 +1,47 @@
+.movieImg {
+  border-radius: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.info > h2 {
+  color: var(--Grey-75);
+  font-size: 1.4rem;
+  letter-spacing: 0.6px;
+  text-align: center;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 8px;
+
+  background: var(--Black-08);
+  padding: 6px 1rem;
+  padding-left: 6px;
+}
+
+.detail > svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.detail > h3 {
+  font-size: 1.4rem;
+  color: var(--Grey-65);
+}
+
+.calendarIcon {
+  color: var(--Grey-65);
+}
+
+.starIcon {
+  color: gold;
+}

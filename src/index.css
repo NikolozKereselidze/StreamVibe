@@ -101,7 +101,8 @@ h6 {
 
 body {
   font-family: var(--font-family-main);
-  background-color: #000;
+  background: var(--Black-08);
+  overflow-x: hidden;
 }
 
 html {

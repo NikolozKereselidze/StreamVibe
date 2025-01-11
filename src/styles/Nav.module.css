@@ -21,6 +21,7 @@
   border-radius: 1rem;
   border: 3px solid var(--Black-12);
   background: var(--Black-06);
+  margin-right: 8rem;
 }
 
 .navigation > ul {
@@ -37,6 +38,12 @@
   font-weight: 400;
   line-height: 150%;
   text-decoration: none;
+}
+
+.homeNav {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
 }
 
 .active {

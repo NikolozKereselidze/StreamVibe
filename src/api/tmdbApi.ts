@@ -53,3 +53,18 @@ export const searchAll = (query: string): Promise<SearchResult[]> => {
       );
     });
 };
+
+export const fetchTrendingMovies = async (): Promise<SearchResult[]> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+    options
+  );
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No trending movies found.");
+  }
+
+  return data.results;
+};

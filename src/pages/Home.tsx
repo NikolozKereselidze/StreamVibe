@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import DoubleTitle from "../components/DoubleTitle";
 import DeviceCardRender from "../components/Home/DeviceCardRender";
 import FaqRender from "../components/Home/FaqRender";
@@ -9,16 +10,31 @@ import Ad from "../components/Ad";
 import RedButton from "../components/RedButton";
 import Footer from "../components/Footer";
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 50 }, // y: 5 applies a small translation down
+  visible: {
+    opacity: 1,
+    y: 0, // Brings the element back to its original position
+    transition: { duration: 1 }, // Duration of 1 second for the entire transition
+  },
+};
+
+const motionProps = {
+  initial: fadeIn.hidden,
+  whileInView: fadeIn.visible,
+  variants: fadeIn, // corrected this line
+  viewport: { once: true },
+};
 const Home = () => {
   const [active, setActive] = useState(false);
   const [duration, setDuration] = useState("Monthly");
 
   return (
     <>
-      <div className={styles.homeWrapper}>
+      <motion.div {...motionProps} className={styles.homeWrapper}>
         <Welcome />
-      </div>
-      <div className="sectionHome">
+      </motion.div>
+      <motion.div {...motionProps} className="sectionHome">
         <DoubleTitle
           heading="We Provide you streaming experience across various devices."
           desc="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
@@ -26,9 +42,9 @@ const Home = () => {
         <div className={styles.deviceCardWrapper}>
           <DeviceCardRender />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="sectionHome">
+      <motion.div {...motionProps} className="sectionHome">
         <div className={styles.faqTitles}>
           <DoubleTitle
             heading="Frequently Asked Questions"
@@ -37,9 +53,9 @@ const Home = () => {
           <RedButton buttonText={"Ask a Question"} />
         </div>
         <FaqRender />
-      </div>
+      </motion.div>
 
-      <div className="sectionHome">
+      <motion.div {...motionProps} className="sectionHome">
         <div className={styles.faqTitles}>
           <DoubleTitle
             heading="Choose the plan that's right for you"
@@ -69,11 +85,11 @@ const Home = () => {
         <div className={styles.subscriptionCards}>
           <SubscriptionRender duration={duration} />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="sectionHome">
+      <motion.div {...motionProps} className="sectionHome">
         <Ad />
-      </div>
+      </motion.div>
 
       <Footer />
     </>

@@ -109,8 +109,8 @@ html {
   font-size: 62.5%;
 }
 
-.cardSection {
-  padding: 2rem 8rem;
+.sectionHome {
+  padding: 6.2rem 8rem;
   display: flex;
   flex-direction: column;
   gap: 6rem;

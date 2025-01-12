@@ -1,10 +1,16 @@
+import { useState } from "react";
 import DoubleTitle from "../components/DoubleTitle";
 import DeviceCardRender from "../components/Home/DeviceCardRender";
 import FaqRender from "../components/Home/FaqRender";
 import Welcome from "../components/Home/Welcome";
 import styles from "../styles/Home.module.css";
+import SubscriptionCard from "../components/Cards/SubscriptionCard";
+import SubscriptionRender from "../components/Home/SubscriptionRender";
 
 const Home = () => {
+  const [active, setActive] = useState(false);
+  const [duration, setDuration] = useState("Monthly");
+
   return (
     <>
       <div className={styles.homeWrapper}>
@@ -29,6 +35,38 @@ const Home = () => {
           <button className={styles.askButton}>Ask a Question</button>
         </div>
         <FaqRender />
+      </div>
+
+      <div className="sectionHome">
+        <div className={styles.faqTitles}>
+          <DoubleTitle
+            heading="Choose the plan that's right for you"
+            desc="Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!"
+          />
+          <div className={styles.planButtons}>
+            <button
+              className={`${styles.monthButton} ${!active && styles.active}`}
+              onClick={() => {
+                setActive(false);
+                setDuration("Monthly");
+              }}
+            >
+              Monthly
+            </button>
+            <button
+              className={`${styles.yearButton} ${active && styles.active}`}
+              onClick={() => {
+                setActive(true);
+                setDuration("Yearly");
+              }}
+            >
+              Yearly
+            </button>
+          </div>
+        </div>
+        <div className={styles.subscriptionCards}>
+          <SubscriptionRender duration={duration} />
+        </div>
       </div>
     </>
   );

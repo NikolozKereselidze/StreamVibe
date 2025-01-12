@@ -5,6 +5,7 @@ import { faqQuestion } from "../Home/FaqRender";
 
 const FaqCard = ({ index, question, answer }: faqQuestion) => {
   const [active, setActive] = useState(false);
+
   return (
     <div className={`${styles.faq} ${active && styles.activeFaq}`}>
       <div className={styles.index}>
@@ -19,7 +20,7 @@ const FaqCard = ({ index, question, answer }: faqQuestion) => {
             <PlusIcon onClick={() => setActive(true)} />
           )}
         </div>
-        {active && <p>{answer}</p>}
+        <p className={active ? styles.active : ""}>{answer}</p>
       </div>
     </div>
   );

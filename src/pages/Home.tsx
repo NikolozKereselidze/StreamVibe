@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.css";
 import SubscriptionRender from "../components/Home/SubscriptionRender";
 import Ad from "../components/Ad";
 import RedButton from "../components/RedButton";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [active, setActive] = useState(false);
@@ -73,6 +74,8 @@ const Home = () => {
       <div className="sectionHome">
         <Ad />
       </div>
+
+      <Footer />
     </>
   );
 };

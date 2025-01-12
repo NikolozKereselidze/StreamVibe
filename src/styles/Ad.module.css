@@ -1,0 +1,30 @@
+.adWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-image: url("../assets/ad/ad.webp");
+  background-position: center;
+  background-size: cover;
+  padding: 8rem 6rem;
+  border: 1px solid #262626;
+
+  border-radius: 1.2rem;
+}
+
+.adInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.adInfo > h2 {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.adInfo > p {
+  color: var(--Grey-60);
+  font-size: 1.6rem;
+  font-weight: 400;
+}

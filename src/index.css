@@ -134,3 +134,21 @@ html {
   font-size: 1.6rem;
   font-weight: 400;
 }
+
+.redButton {
+  padding: 1.4rem 2rem;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: var(--Red-45);
+
+  transition: background 0.3s, transform 0.3s;
+}
+
+.redButton:hover {
+  background: var(--Red-50);
+  transform: scale(1.03);
+}

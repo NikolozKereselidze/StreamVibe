@@ -4,8 +4,9 @@ import DeviceCardRender from "../components/Home/DeviceCardRender";
 import FaqRender from "../components/Home/FaqRender";
 import Welcome from "../components/Home/Welcome";
 import styles from "../styles/Home.module.css";
-import SubscriptionCard from "../components/Cards/SubscriptionCard";
 import SubscriptionRender from "../components/Home/SubscriptionRender";
+import Ad from "../components/Ad";
+import RedButton from "../components/RedButton";
 
 const Home = () => {
   const [active, setActive] = useState(false);
@@ -32,7 +33,7 @@ const Home = () => {
             heading="Frequently Asked Questions"
             desc="Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about StreamVibe."
           />
-          <button className={styles.askButton}>Ask a Question</button>
+          <RedButton buttonText={"Ask a Question"} />
         </div>
         <FaqRender />
       </div>
@@ -67,6 +68,10 @@ const Home = () => {
         <div className={styles.subscriptionCards}>
           <SubscriptionRender duration={duration} />
         </div>
+      </div>
+
+      <div className="sectionHome">
+        <Ad />
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import styles from "../../styles/SubscriptionCard.module.css";
 import { subscription } from "../Home/SubscriptionRender";
+import RedButton from "../RedButton";
 
 const SubscriptionCard = ({
   title,
@@ -21,7 +22,7 @@ const SubscriptionCard = ({
 
       <div className={styles.cardButtons}>
         <button className={styles.trialButton}>Start Free Trial</button>
-        <button className={styles.planButton}>Choose Plan</button>
+        <RedButton buttonText={"Choose Plan"} />
       </div>
     </div>
   );

@@ -30,27 +30,7 @@ export const searchAll = (query: string): Promise<SearchResult[]> => {
       if (data.results.length === 0) {
         throw new Error("Not Found");
       }
-      return Promise.all(
-        data.results.map(async (item: SearchResult): Promise<SearchResult> => {
-          if (item.media_type === "movie" || item.media_type === "tv") {
-            const detailsUrl = `${BASE_URL}/${item.media_type}/${item.id}?language=en-US`;
-            const detailsResponse = await fetch(detailsUrl, options);
-            const details = await detailsResponse.json();
-
-            return {
-              ...item,
-              runtime: details.runtime,
-              genres: details.genres.map(
-                (genre: { name: string }) => genre.name
-              ),
-              seasons: details.number_of_seasons,
-              releaseYear: details.release_date?.split("-")[0],
-              ageRating: details.adult ? "18+" : "13+",
-            };
-          }
-          return item; // For other media types, return as is (person or tv)
-        })
-      );
+      return fetchResult(data);
     });
 };
 
@@ -67,4 +47,34 @@ export const fetchTrendingMovies = async (): Promise<SearchResult[]> => {
   }
 
   return data.results;
+};
+
+export const fetchResult = (
+  data:
+    | {
+        results: SearchResult[];
+      }
+    | SearchResult
+): Promise<SearchResult[]> => {
+  const resultsArray = "results" in data ? data.results : [data];
+
+  return Promise.all(
+    resultsArray.map(async (item: SearchResult): Promise<SearchResult> => {
+      if (item.media_type === "movie" || item.media_type === "tv") {
+        const detailsUrl = `${BASE_URL}/${item.media_type}/${item.id}?language=en-US`;
+        const detailsResponse = await fetch(detailsUrl, options);
+        const details = await detailsResponse.json();
+
+        return {
+          ...item,
+          runtime: details.runtime,
+          genres: details.genres.map((genre: { name: string }) => genre.name),
+          seasons: details.number_of_seasons,
+          releaseYear: details.release_date?.split("-")[0],
+          ageRating: details.adult ? "18+" : "13+",
+        };
+      }
+      return item;
+    })
+  );
 };

@@ -9,7 +9,9 @@ const SearchTvCard: React.FC<TVCardProps> = ({ item }) => (
   <>
     {item.poster_path && (
       <img
-        src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500${
+          item.poster_path || item.backdrop_path
+        }`}
         alt={`${item.name} poster`}
       />
     )}

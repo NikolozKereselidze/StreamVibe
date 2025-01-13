@@ -12,7 +12,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
       {item.poster_path && (
         <img
           className={styles.movieImg}
-          src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${
+            item.poster_path || item.backdrop_path
+          }`}
           alt={`${item.title} poster`}
         />
       )}

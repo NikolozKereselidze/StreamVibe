@@ -2,7 +2,7 @@ import Search from "../Search/Search";
 import styles from "../../styles/Home.module.css";
 import background from "../../assets/background/home-background.webp";
 import backgroundLogo from "../../assets/background/background-logo.webp";
-import { PlayIcon } from "@heroicons/react/24/outline";
+import PlayButton from "../PlayButton";
 
 const Welcome = () => {
   return (
@@ -31,12 +31,7 @@ const Welcome = () => {
               the content you want to watch.
             </p>
           </div>
-          <div className={styles.welcomeButton}>
-            <button>
-              <PlayIcon />
-              Start Watching Now
-            </button>
-          </div>
+          <PlayButton title="Start Watching Now" />
         </div>
       </div>
     </>

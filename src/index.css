@@ -152,3 +152,27 @@ html {
   background: var(--Red-50);
   transform: scale(1.03);
 }
+
+.welcomeButton > button {
+  display: flex;
+  padding: 14px 24px;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  background: var(--Red-45, #e50000);
+  color: #fff;
+  font-size: 1.4rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.welcomeButton > button:hover {
+  background: var(--Red-50);
+  transform: scale(1.03);
+}
+
+.welcomeButton > button > svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}

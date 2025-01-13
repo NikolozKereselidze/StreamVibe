@@ -22,4 +22,5 @@ export interface SearchResult {
   known_for?: {
     original_title: string;
   }[];
+  original_language?: string; // Release language
 }

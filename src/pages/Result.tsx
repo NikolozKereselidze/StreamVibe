@@ -11,11 +11,24 @@ import {
 import { StarIcon } from "@heroicons/react/24/solid";
 import Ad from "../components/Ad";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { fetchRecommendations } from "../api/tmdbApi";
+import MultipleCards from "../components/Cards/MultipleCards";
 
 const Result = () => {
   const location = useLocation();
   const item = location.state?.item as SearchResult;
+  const [recommendations, setRecommendations] = useState<SearchResult[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (item) {
+      fetchRecommendations(item.media_type, item.id)
+        .then(setRecommendations)
+        .catch((err) => setError(err.message));
+    }
+  }, [item]);
+
   console.log(item);
 
   return (
@@ -104,6 +117,24 @@ const Result = () => {
                     )}
                   </div>
                 </div>
+              </div>
+
+              {error && <p>{error}</p>}
+
+              <div className={styles.recWrap}>
+                {error ? (
+                  <p className={styles.error}>{error}</p>
+                ) : recommendations.length > 0 ? (
+                  <MultipleCards
+                    title="Similar"
+                    showOnPage={3}
+                    results={recommendations}
+                  />
+                ) : (
+                  <p className={styles.noRecommendations}>
+                    Loading recommendations...
+                  </p>
+                )}
               </div>
             </div>
 

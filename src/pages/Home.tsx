@@ -11,10 +11,10 @@ import RedButton from "../components/RedButton";
 import Footer from "../components/Footer";
 
 const fadeIn = {
-  hidden: { opacity: 0, y: 50 }, // y: 5 applies a small translation down
+  hidden: { opacity: 0, x: -50 },
   visible: {
     opacity: 1,
-    y: 0, // Brings the element back to its original position
+    x: 0, // Brings the element back to its original position
     transition: { duration: 1 }, // Duration of 1 second for the entire transition
   },
 };

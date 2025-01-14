@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
   gap: 2.4rem;
 }
 
@@ -36,6 +37,7 @@
   border-radius: 1rem;
   border: 1px solid var(--Black-15);
   background: var(--Black-10);
+  grid-column: 1 / -1;
 }
 
 .descriptionTitle {
@@ -58,7 +60,7 @@
 .allInfoContainer {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 0.5fr 1fr;
+  grid-template-rows: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 2rem;
 }
 
@@ -72,8 +74,8 @@
   border: 1px solid var(--Black-15);
   background: var(--Black-10);
 
-  grid-column: 2;
-  grid-row: 1 / 3;
+  grid-column: 2 / -1;
+  grid-row: 2 /3;
 }
 
 .infoWrap {
@@ -145,4 +147,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.recWrap {
+  grid-column: 1 / 2;
+}
+
+.error {
+  color: var(--Error-Red);
+  font-size: 1.2rem;
+}
+
+.noRecommendations {
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
 }

@@ -78,3 +78,25 @@ export const fetchResult = (
     })
   );
 };
+
+export const fetchRecommendations = async (
+  mediaType: string,
+  id: number
+): Promise<SearchResult[]> => {
+  const url = `${BASE_URL}/${mediaType}/${id}/recommendations?language=en-US`;
+  const response = await fetch(url, options);
+
+  if (!response.ok) {
+    throw new Error(`Error fetching recommendations: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No recommendations found.");
+  }
+
+  const detailedRecommendations = await fetchResult({ results: data.results });
+
+  return detailedRecommendations;
+};

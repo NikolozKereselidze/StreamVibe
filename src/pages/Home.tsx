@@ -34,7 +34,7 @@ const Home = () => {
       <motion.div {...motionProps} className={styles.homeWrapper}>
         <Welcome />
       </motion.div>
-      <motion.div {...motionProps} className="sectionHome">
+      <motion.div {...motionProps} className="section">
         <DoubleTitle
           heading="We Provide you streaming experience across various devices."
           desc="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
@@ -44,7 +44,7 @@ const Home = () => {
         </div>
       </motion.div>
 
-      <motion.div {...motionProps} className="sectionHome">
+      <motion.div {...motionProps} className="section">
         <div className={styles.faqTitles}>
           <DoubleTitle
             heading="Frequently Asked Questions"
@@ -55,7 +55,7 @@ const Home = () => {
         <FaqRender />
       </motion.div>
 
-      <motion.div {...motionProps} className="sectionHome">
+      <motion.div {...motionProps} className="section">
         <div className={styles.faqTitles}>
           <DoubleTitle
             heading="Choose the plan that's right for you"
@@ -87,7 +87,7 @@ const Home = () => {
         </div>
       </motion.div>
 
-      <motion.div {...motionProps} className="sectionHome">
+      <motion.div {...motionProps} className="section">
         <Ad />
       </motion.div>
 

@@ -109,7 +109,7 @@ html {
   font-size: 62.5%;
 }
 
-.sectionHome {
+.section {
   padding: 6.2rem 8rem;
   display: flex;
   flex-direction: column;
@@ -175,4 +175,32 @@ html {
 .welcomeButton > button > svg {
   width: 2.4rem;
   height: 2.4rem;
+}
+
+.flag-dropdown {
+  background-color: inherit !important;
+  border: 1px solid var(--Black-15) !important;
+}
+
+.selected-flag,
+.selected-flag:hover,
+.selected-flag:focus {
+  background-color: inherit !important;
+}
+
+.country-list {
+  background: var(--Black-08) !important;
+  scrollbar-color: var(--Black-15) !important;
+}
+
+.country {
+  color: #fff;
+}
+
+.country:hover {
+  background-color: var(--Black-15) !important;
+}
+
+.react-tel-input .country-list .country.highlight {
+  background-color: var(--Black-15) !important;
 }

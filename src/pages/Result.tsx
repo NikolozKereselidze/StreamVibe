@@ -34,7 +34,7 @@ const Result = () => {
   return (
     <>
       <Search />
-      <div className="sectionHome">
+      <div className="section">
         {item && (
           <>
             <div

@@ -1,0 +1,92 @@
+.supportWrap {
+  display: grid;
+  grid-template-columns: 1.25fr 2fr;
+  gap: 5rem;
+}
+
+.supportWelcome {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.supportImg {
+  border-radius: 4px;
+  border: 1px solid var(--Black-15, #262626);
+  background: var(--Black-06, #0f0f0f);
+}
+
+.supportForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem;
+  gap: 4rem;
+  flex: 1 0 0;
+  border-radius: 1rem;
+  border: 1px solid var(--Black-15);
+  background: var(--Black-06);
+}
+
+.supportForm > button {
+  width: 100%;
+}
+
+.inputWrap {
+  display: flex;
+  gap: 2rem;
+  align-self: stretch;
+}
+
+.inputLabel,
+.textAreaWrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  gap: 1rem;
+}
+
+.inputLabel > input,
+.textAreaWrap > textarea {
+  padding: 1.6rem;
+  align-self: stretch;
+  border-radius: 6px;
+  border: 1px solid var(--Black-15);
+  background: var(--Black-08);
+  color: #fff;
+  font-size: 1.4rem;
+  outline: none;
+}
+
+.inputLabel > label,
+.textAreaWrap > label {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.textAreaWrap > textarea {
+  width: 100%;
+}
+
+.faqTitle {
+  display: flex;
+  align-items: flex-end;
+}
+
+.telInput {
+  height: 100%;
+}
+
+.telInput > input::placeholder {
+  color: var(--Grey-60) !important;
+}
+
+.telInput > input {
+  border: 1px solid var(--Black-15) !important;
+  background: var(--Black-08) !important;
+  width: 100% !important;
+  height: 100% !important;
+  color: #fff !important;
+}

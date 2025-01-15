@@ -12,7 +12,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import Ad from "../components/Ad";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import { fetchRecommendations } from "../api/tmdbApi";
+import { fetchRecommendations, fetchVideo } from "../api/tmdbApi";
 import MultipleCards from "../components/Cards/MultipleCards";
 
 const Result = () => {
@@ -20,6 +20,7 @@ const Result = () => {
   const item = location.state?.item as SearchResult;
   const [recommendations, setRecommendations] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [videoKey, setVideoKey] = useState<string | null>(null);
 
   useEffect(() => {
     if (item) {
@@ -27,9 +28,34 @@ const Result = () => {
         .then(setRecommendations)
         .catch((err) => setError(err.message));
     }
+    setVideoKey(null);
   }, [item]);
 
-  console.log(item);
+  const handlePlayNow = async () => {
+    if (!item) return;
+
+    try {
+      const videoData = await fetchVideo({
+        media_type: item.media_type,
+        id: item.id,
+      });
+      const trailer = videoData.results.find(
+        (video: { type: string }) => video.type === "Trailer"
+      );
+      if (trailer) {
+        setVideoKey(trailer.key);
+      } else {
+        alert("Trailer not available");
+      }
+    } catch (err) {
+      console.error("Error fetching trailer:", err);
+      alert("Failed to load the trailer.");
+    }
+  };
+
+  const handleClosePlayer = () => {
+    setVideoKey(null); // Reset the videoKey to remove the YouTube player
+  };
 
   return (
     <>
@@ -37,21 +63,43 @@ const Result = () => {
       <div className="section">
         {item && (
           <>
-            <div
-              className={styles.card}
-              style={{
-                backgroundImage: item.backdrop_path
-                  ? `linear-gradient(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15)), url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
-                  : "none",
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
-              }}
-            >
-              <div className={styles.cardTitle}>
-                <h2 className={styles.title}>{item.title || item.name}</h2>
-                <PlayButton title="Play Now" />
+            {videoKey ? (
+              <div className={`${styles.card} ${styles.noPad}`}>
+                <div className={styles.videoContainer}>
+                  <button
+                    className={styles.closeButton}
+                    onClick={handleClosePlayer}
+                  >
+                    Close
+                  </button>
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&controls=0`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div
+                className={styles.card}
+                style={{
+                  backgroundImage: item.backdrop_path
+                    ? `linear-gradient(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.15)), url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
+                    : "none",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                }}
+              >
+                <div className={styles.cardTitle}>
+                  <h2 className={styles.title}>{item.title || item.name}</h2>
+                  <PlayButton title="Play Now" onClick={handlePlayNow} />
+                </div>
+              </div>
+            )}
 
             <div className={styles.allInfoContainer}>
               <div className={styles.description}>
@@ -118,8 +166,6 @@ const Result = () => {
                   </div>
                 </div>
               </div>
-
-              {error && <p>{error}</p>}
 
               <div className={styles.recWrap}>
                 {error ? (

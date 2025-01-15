@@ -154,12 +154,53 @@
 }
 
 .error {
-  color: var(--Error-Red);
-  font-size: 1.2rem;
+  color: var(--Red-45);
+  font-size: 1.4rem;
+  text-align: center;
 }
 
 .noRecommendations {
   color: #fff;
   font-size: 2rem;
   text-align: center;
+}
+
+.videoContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  /* No clicking/hover effects */
+  pointer-events: none;
+}
+
+.videoContainer iframe {
+  /* Extend it beyond the viewport... */
+  width: 300%;
+  height: 100%;
+  /* ...and bring it back again */
+  margin-left: -100%;
+}
+
+.noPad {
+  padding: 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 1.4rem 2.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: all;
+  font-size: 1.4rem;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.8);
 }

@@ -1,47 +1,45 @@
+import { useState } from "react";
 import SubscriptionCard from "../Cards/SubscriptionCard";
+import DoubleTitle from "../DoubleTitle";
+import styles from "../../styles/SubscriptionRender.module.css";
 
-export type subscription = {
-  title: string;
-  subtitle: string;
-  price: number;
-  duration: string;
-};
+const SubscriptionRender = () => {
+  const [active, setActive] = useState(false);
+  const [duration, setDuration] = useState("Monthly");
 
-const subscriptions: subscription[] = [
-  {
-    title: "Basic Plan",
-    subtitle:
-      "Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.",
-    price: 9.99,
-    duration: "",
-  },
-
-  {
-    title: "Standard Plan",
-    subtitle:
-      "Access to a wider selection of movies and shows, including most new releases and exclusive content.",
-    price: 12.99,
-    duration: "",
-  },
-  {
-    title: "Premium Plan",
-    subtitle:
-      "Access to a widest selection of movies and shows, including all new releases and Offline Viewing.",
-    price: 14.99,
-    duration: "",
-  },
-];
-
-const SubscriptionRender = ({ duration }: { duration: string }) => {
-  return subscriptions.map((subs, index) => (
-    <SubscriptionCard
-      title={subs.title}
-      subtitle={subs.subtitle}
-      price={subs.price}
-      duration={duration}
-      key={index}
-    />
-  ));
+  return (
+    <>
+      <div className={styles.faqTitles}>
+        <DoubleTitle
+          heading="Choose the plan that's right for you"
+          desc="Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!"
+        />
+        <div className={styles.planButtons}>
+          <button
+            className={`${styles.monthButton} ${!active && styles.active}`}
+            onClick={() => {
+              setActive(false);
+              setDuration("Monthly");
+            }}
+          >
+            Monthly
+          </button>
+          <button
+            className={`${styles.yearButton} ${active && styles.active}`}
+            onClick={() => {
+              setActive(true);
+              setDuration("Yearly");
+            }}
+          >
+            Yearly
+          </button>
+        </div>
+      </div>
+      <div className={styles.subscriptionCards}>
+        <SubscriptionCard duration={duration} />
+      </div>
+    </>
+  );
 };
 
 export default SubscriptionRender;

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import DoubleTitle from "../components/DoubleTitle";
 import DeviceCardRender from "../components/Home/DeviceCardRender";
@@ -26,9 +25,6 @@ const motionProps = {
   viewport: { once: true },
 };
 const Home = () => {
-  const [active, setActive] = useState(false);
-  const [duration, setDuration] = useState("Monthly");
-
   return (
     <>
       <motion.div {...motionProps} className={styles.homeWrapper}>
@@ -56,35 +52,7 @@ const Home = () => {
       </motion.div>
 
       <motion.div {...motionProps} className="section">
-        <div className={styles.faqTitles}>
-          <DoubleTitle
-            heading="Choose the plan that's right for you"
-            desc="Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!"
-          />
-          <div className={styles.planButtons}>
-            <button
-              className={`${styles.monthButton} ${!active && styles.active}`}
-              onClick={() => {
-                setActive(false);
-                setDuration("Monthly");
-              }}
-            >
-              Monthly
-            </button>
-            <button
-              className={`${styles.yearButton} ${active && styles.active}`}
-              onClick={() => {
-                setActive(true);
-                setDuration("Yearly");
-              }}
-            >
-              Yearly
-            </button>
-          </div>
-        </div>
-        <div className={styles.subscriptionCards}>
-          <SubscriptionRender duration={duration} />
-        </div>
+        <SubscriptionRender />
       </motion.div>
 
       <motion.div {...motionProps} className="section">

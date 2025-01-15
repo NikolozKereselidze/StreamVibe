@@ -4,6 +4,26 @@ import styles from "../../styles/MultipleCards.module.css";
 import MovieCard from "./MovieCad";
 import { useNavigate } from "react-router-dom";
 import { SearchResult } from "../../types/search";
+import { AnimatePresence, motion } from "framer-motion";
+
+const fadeIn = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+
+const motionProps = {
+  initial: "hidden", // Set the initial state (hidden)
+  animate: "visible", // Animate to the visible state
+  exit: "exit", // Apply exit animation
+  variants: fadeIn,
+  viewport: { once: true },
+};
 
 interface MultipleCardsProps {
   showOnPage: number;
@@ -63,13 +83,16 @@ const MultipleCards = ({ showOnPage, results, title }: MultipleCardsProps) => {
         </div>
         <div className={styles.cardWrapper}>
           {currentShowing.map((result, i) => (
-            <div
-              className={styles.card}
-              key={i}
-              onClick={() => clickHandler(result)}
-            >
-              <MovieCard key={result.id} item={result} />
-            </div>
+            <AnimatePresence>
+              <motion.div
+                {...motionProps}
+                key={`${i} - ${currentPage}`}
+                className={styles.card}
+                onClick={() => clickHandler(result)}
+              >
+                <MovieCard key={result.id} item={result} />
+              </motion.div>
+            </AnimatePresence>
           ))}
         </div>
       </div>

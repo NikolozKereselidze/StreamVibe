@@ -124,37 +124,3 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 8rem;
 }
-
-/* Subscriptions */
-.planButtons {
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  border-radius: 10px;
-  border: 1px solid var(--Black-15);
-  background: var(--Black-06);
-}
-
-.monthButton,
-.yearButton {
-  padding: 1.2rem 2rem;
-  border-radius: 1rem;
-  border: none;
-  color: var(--Grey-60, #999);
-  background: transparent;
-  font-size: 1.6rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.active {
-  background: var(--Black-12);
-  color: #fff;
-}
-
-.subscriptionCards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}

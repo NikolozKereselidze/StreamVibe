@@ -79,6 +79,22 @@ export const fetchResult = (
   );
 };
 
+export const fetchVideo = ({
+  media_type,
+  id,
+}: {
+  media_type: string;
+  id: number;
+}) => {
+  return fetch(
+    `https://api.themoviedb.org/3/${media_type}/${id}/videos?language=en-US`,
+    options
+  )
+    .then((res) => res.json())
+    .then((res) => res)
+    .catch((err) => console.error(err));
+};
+
 export const fetchRecommendations = async (
   mediaType: string,
   id: number

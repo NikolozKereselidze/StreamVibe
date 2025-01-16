@@ -1,0 +1,45 @@
+thead > tr {
+  background: #000;
+}
+
+td,
+.tableValue,
+thead th {
+  padding: 2.4rem;
+  border-left: 1px solid var(--Black-15);
+  border-bottom: 1px solid var(--Black-15);
+  color: var(--Grey-60);
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+thead th {
+  border-top: 1px solid var(--Black-15);
+}
+
+tr td:last-child,
+tr th:last-child {
+  border-right: 1px solid var(--Black-15);
+}
+
+thead th {
+  color: #fff;
+}
+
+.popularHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.popular {
+  padding: 0 6px;
+  font-size: 1.4rem;
+  border-radius: 2px;
+  background: var(--Red-45);
+}
+
+tbody > tr > td:first-child {
+  white-space: nowrap;
+}

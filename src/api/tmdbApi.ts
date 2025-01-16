@@ -49,6 +49,70 @@ export const fetchTrendingMovies = async (): Promise<SearchResult[]> => {
   return data.results;
 };
 
+// MOVIES
+
+export const fetchUpcomingMovies = async (): Promise<SearchResult[]> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    options
+  );
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No trending movies found.");
+  }
+
+  return data.results;
+};
+
+export const fetchTopRatedMovies = async (): Promise<SearchResult[]> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    options
+  );
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No trending movies found.");
+  }
+
+  return data.results;
+};
+
+// SHOWS
+
+export const fetchTopRatedShows = async (): Promise<SearchResult[]> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
+    options
+  );
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No trending movies found.");
+  }
+
+  return data.results;
+};
+
+export const fetchPopularShows = async (): Promise<SearchResult[]> => {
+  const response = await fetch(
+    "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1",
+    options
+  );
+
+  const data = await response.json();
+
+  if (data.results.length === 0) {
+    throw new Error("No trending movies found.");
+  }
+
+  return data.results;
+};
+
 export const fetchResult = (
   data:
     | {
@@ -99,9 +163,10 @@ export const fetchRecommendations = async (
   mediaType: string,
   id: number
 ): Promise<SearchResult[]> => {
-  const url = `${BASE_URL}/${mediaType}/${id}/recommendations?language=en-US`;
+  const url = `${BASE_URL}/${
+    mediaType ? mediaType : "movie"
+  }/${id}/recommendations?language=en-US`;
   const response = await fetch(url, options);
-
   if (!response.ok) {
     throw new Error(`Error fetching recommendations: ${response.statusText}`);
   }

@@ -82,18 +82,22 @@ const MultipleCards = ({ showOnPage, results, title }: MultipleCardsProps) => {
           </div>
         </div>
         <div className={styles.cardWrapper}>
-          {currentShowing.map((result, i) => (
-            <AnimatePresence>
+          <AnimatePresence>
+            {currentShowing.map((result, i) => (
               <motion.div
                 {...motionProps}
-                key={`${i} - ${currentPage}`}
+                key={`${result.id}-${i}`}
                 className={styles.card}
                 onClick={() => clickHandler(result)}
+                whileHover={{
+                  scale: 1.05, // Scale up on hover
+                  transition: { duration: 0.3 }, // Smooth transition
+                }}
               >
                 <MovieCard key={result.id} item={result} />
               </motion.div>
-            </AnimatePresence>
-          ))}
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </>

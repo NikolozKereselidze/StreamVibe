@@ -95,7 +95,7 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
             </li>
             <li>
               <NavLink
-                to="/movies"
+                to="/media"
                 className={({ isActive }) =>
                   `${styles.nav} ${isActive ? styles.active : ""}`
                 }

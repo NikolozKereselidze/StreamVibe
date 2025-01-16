@@ -15,7 +15,7 @@
 
 .title > h2 {
   color: #fff;
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   font-weight: 700;
   line-height: 150%; /* 57px */
 }
@@ -60,11 +60,6 @@
   border: 1px solid var(--Black-15);
   background: var(--Black-10);
   cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
 }
 
 .pageIndicator {

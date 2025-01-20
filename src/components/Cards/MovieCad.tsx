@@ -7,6 +7,12 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
+  const releaseDate = item.release_date || item.first_air_date;
+
+  const releaseYear = releaseDate
+    ? String(new Date(releaseDate).getFullYear())
+    : "";
+
   return (
     <>
       {item.poster_path && (
@@ -23,7 +29,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
         <h2>{item.name || item.title}</h2>
         <div className={styles.detail}>
           <CalendarIcon className={styles.calendarIcon} />
-          <h3>{item.release_date || item.first_air_date}</h3>
+          <h3>{releaseYear}</h3>
         </div>
         <div className={styles.detail}>
           <StarIcon className={styles.starIcon} />

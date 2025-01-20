@@ -4,6 +4,7 @@
 
 .homeWrapper {
   min-height: 90rem;
+  max-height: 90vh;
 }
 
 /* Background Grid */
@@ -12,17 +13,15 @@
 }
 
 .background {
-  height: 100%;
-  height: 700px;
-  max-height: 700px;
+  height: 70rem;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.backgroundLogo {
-  height: 200px;
+.background > img {
+  height: 20rem;
 }
 
 .welcome {
@@ -62,34 +61,10 @@
   font-weight: 400;
 }
 
-.welcomeButton > button {
-  display: flex;
-  padding: 14px 24px;
-  align-items: center;
-  gap: 4px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  background: var(--Red-45, #e50000);
-  color: #fff;
-  font-size: 1.4rem;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.welcomeButton > button:hover {
-  background: var(--Red-50);
-  transform: scale(1.03);
-}
-
-.welcomeButton > button > svg {
-  width: 2.4rem;
-  height: 2.4rem;
-}
-
 /* Device */
 .deviceCardWrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -120,7 +95,64 @@
 }
 
 .faqWrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 8rem;
+}
+
+@media screen and (max-width: 1274px) {
+  .welcome {
+    padding: 0 12rem;
+  }
+
+  .welcomeText > h2 {
+    font-size: 3.4rem;
+  }
+
+  .welcomeText > p {
+    font-size: 1.4rem;
+  }
+
+  .faqTitles > div {
+    padding-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .faqWrapper {
+    gap: 4rem;
+  }
+  .welcome {
+    padding: 0 4rem;
+  }
+
+  .welcomeText > h2 {
+    font-size: 2.8rem;
+  }
+  .background > img {
+    height: 15rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homeWrapper {
+    min-height: 85rem;
+  }
+
+  .welcome {
+    padding: 2rem;
+  }
+
+  .welcomeText > h2 {
+    font-size: 2.4rem;
+  }
+  .welcomeText > p {
+    font-size: 1.3rem;
+  }
+
+  .faqTitles {
+    flex-direction: column;
+    align-items: start;
+    gap: 1.4rem;
+  }
 }

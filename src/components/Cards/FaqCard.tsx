@@ -11,7 +11,7 @@ const FaqCard = ({ index, question, answer }: faqQuestion) => {
       <div className={styles.index}>
         <p>0{index}</p>
       </div>
-      <div className={styles.details}>
+      <div className={`${styles.details} ${active && styles.gap}`}>
         <div className={styles.detailsHeader}>
           <h2>{question}</h2>
           {active ? (

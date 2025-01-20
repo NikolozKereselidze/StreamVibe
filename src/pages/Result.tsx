@@ -75,7 +75,7 @@ const Result = () => {
                   <iframe
                     width="100%"
                     height="100%"
-                    src={`https://www.youtube.com/embed/${videoKey}?autoplay=1&controls=0`}
+                    src={`https://www.youtube.com/embed/${videoKey}?rel=0&autoplay=1&controls=0`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -101,10 +101,26 @@ const Result = () => {
               </div>
             )}
 
+            <div className={styles.description}>
+              <h3 className={styles.descriptionTitle}>Description</h3>
+              <p className={styles.descriptionText}>{item.overview}</p>
+            </div>
+
             <div className={styles.allInfoContainer}>
-              <div className={styles.description}>
-                <h3 className={styles.descriptionTitle}>Description</h3>
-                <p className={styles.descriptionText}>{item.overview}</p>
+              <div className={styles.recWrap}>
+                {error ? (
+                  <p className={styles.error}>{error}</p>
+                ) : recommendations.length > 0 ? (
+                  <MultipleCards
+                    title="Similar"
+                    defaultShowOnPage={3}
+                    results={recommendations}
+                  />
+                ) : (
+                  <p className={styles.noRecommendations}>
+                    Loading recommendations...
+                  </p>
+                )}
               </div>
 
               <div className={styles.allDetails}>
@@ -165,22 +181,6 @@ const Result = () => {
                     )}
                   </div>
                 </div>
-              </div>
-
-              <div className={styles.recWrap}>
-                {error ? (
-                  <p className={styles.error}>{error}</p>
-                ) : recommendations.length > 0 ? (
-                  <MultipleCards
-                    title="Similar"
-                    showOnPage={3}
-                    results={recommendations}
-                  />
-                ) : (
-                  <p className={styles.noRecommendations}>
-                    Loading recommendations...
-                  </p>
-                )}
               </div>
             </div>
 

@@ -102,7 +102,15 @@ h6 {
 body {
   font-family: var(--font-family-main);
   background: var(--Black-08);
-  overflow-x: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden !important;
 }
 
 html {
@@ -161,7 +169,7 @@ html {
   border: none;
   cursor: pointer;
   border-radius: 8px;
-  background: var(--Red-45, #e50000);
+  background: var(--Red-45);
   color: #fff;
   font-size: 1.4rem;
   transition: background 0.3s, transform 0.3s;
@@ -203,4 +211,84 @@ html {
 
 .react-tel-input .country-list .country.highlight {
   background-color: var(--Black-15) !important;
+}
+
+@media screen and (max-width: 1274px) {
+  .section {
+    padding: 6rem;
+  }
+
+  .sectionTitle > h2 {
+    font-size: 2.4rem;
+  }
+
+  .redButton {
+    white-space: nowrap;
+    padding: 1.2rem 1.6rem;
+  }
+
+  .welcomeButton > button {
+    padding: 1.2rem 2rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .welcomeButton > button {
+    padding: 1rem 1.4rem;
+    font-size: 1.2rem;
+  }
+
+  .section {
+    gap: 2.8rem;
+    padding: 4rem;
+  }
+
+  .sectionTitle {
+    padding-right: 10rem;
+  }
+
+  .sectionTitle > h2 {
+    font-size: 2rem;
+  }
+
+  .sectionTitle > p {
+    font-size: 1.4rem;
+  }
+
+  .redButton {
+    padding: 1rem 1.4rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 2.8rem 2rem;
+  }
+
+  .welcomeButton > button {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .sectionTitle {
+    padding-right: 2rem;
+  }
+
+  .sectionTitle > h2 {
+    font-size: 1.6rem;
+  }
+
+  .sectionTitle > p {
+    font-size: 1.3rem;
+  }
+
+  .redButton {
+    padding: 1rem 1.1rem;
+    font-size: 1.2rem;
+  }
+
+  .react-tel-input > .form-control {
+    padding: 1rem;
+  }
 }

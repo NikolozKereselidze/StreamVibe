@@ -1,5 +1,5 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "../../styles/MultipleCards.module.css";
 import MovieCard from "./MovieCad";
 import { useNavigate } from "react-router-dom";
@@ -18,24 +18,54 @@ const fadeIn = {
 };
 
 const motionProps = {
-  initial: "hidden", // Set the initial state (hidden)
-  animate: "visible", // Animate to the visible state
-  exit: "exit", // Apply exit animation
+  initial: "hidden",
+  animate: "visible",
+  exit: "exit",
   variants: fadeIn,
   viewport: { once: true },
 };
 
 interface MultipleCardsProps {
-  showOnPage: number;
+  defaultShowOnPage: number; // Default number of items to show per page
   results: SearchResult[];
   title: string;
 }
 
-const MultipleCards = ({ showOnPage, results, title }: MultipleCardsProps) => {
-  const ITEMS_PER_PAGE = showOnPage; // Number of movies to display per page
-  const [currentPage, setCurrentPage] = useState(1); // Tracks the current page
-  const totalPages = Math.ceil(results.length / ITEMS_PER_PAGE); // Total pages
+const MultipleCards = ({
+  defaultShowOnPage,
+  results,
+  title,
+}: MultipleCardsProps) => {
+  const [showOnPage, setShowOnPage] = useState(defaultShowOnPage);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+
+  // Determine if the view is mobile
+
+  const updateShowOnPage = useCallback(() => {
+    if (window.innerWidth <= 480) {
+      setShowOnPage(2); // Show 2 items for small screens
+    } else if (window.innerWidth <= 1024) {
+      setShowOnPage(3); // Show 3 items for medium screens
+    } else if (window.innerWidth <= 1274) {
+      setShowOnPage(4); // Default for larger screens
+    } else {
+      setShowOnPage(defaultShowOnPage); // Default for larger screens
+    }
+  }, [defaultShowOnPage]);
+
+  useEffect(() => {
+    updateShowOnPage(); // Update on mount
+    window.addEventListener("resize", updateShowOnPage); // Update on window resize
+
+    return () => {
+      window.removeEventListener("resize", updateShowOnPage); // Cleanup listener
+    };
+  }, [updateShowOnPage]);
+
+  const totalPages = Math.ceil(results.length / showOnPage);
+  const startIndex = (currentPage - 1) * showOnPage;
+  const currentShowing = results.slice(startIndex, startIndex + showOnPage);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -52,9 +82,6 @@ const MultipleCards = ({ showOnPage, results, title }: MultipleCardsProps) => {
       navigate(newUrl, { state: { item } });
     }
   };
-
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentShowing = results.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <>
@@ -90,8 +117,8 @@ const MultipleCards = ({ showOnPage, results, title }: MultipleCardsProps) => {
                 className={styles.card}
                 onClick={() => clickHandler(result)}
                 whileHover={{
-                  scale: 1.05, // Scale up on hover
-                  transition: { duration: 0.3 }, // Smooth transition
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
                 }}
               >
                 <MovieCard key={result.id} item={result} />

@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
+import useIsMobile from "../hooks/useIsMobile";
 
 const Support = () => {
   const [name, setName] = useState<string>("");
@@ -16,22 +17,34 @@ const Support = () => {
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const isMobile = useIsMobile(); // Using the custom hook
+
   return (
     <>
       <Search />
       <div className="section">
-        <div className={styles.supportWrap}>
+        {isMobile && (
           <div className={styles.supportWelcome}>
             <DoubleTitle
               heading="Welcome to our support page!"
               desc="We're here to help you with any problems you may be having with our product."
             />
-            <img
-              src={supportImg}
-              alt="multiple movies"
-              className={styles.supportImg}
-            />
           </div>
+        )}
+        <div className={styles.supportWrap}>
+          {!isMobile && (
+            <div className={styles.supportWelcome}>
+              <DoubleTitle
+                heading="Welcome to our support page!"
+                desc="We're here to help you with any problems you may be having with our product."
+              />
+              <img
+                src={supportImg}
+                alt="multiple movies"
+                className={styles.supportImg}
+              />
+            </div>
+          )}
 
           <form action="" className={styles.supportForm}>
             <div className={styles.inputWrap}>
@@ -109,7 +122,9 @@ const Support = () => {
             <RedButton buttonText="Send Message" />
           </form>
         </div>
+      </div>
 
+      <div className="section">
         <div className={styles.faqTitle}>
           <DoubleTitle
             heading="Frequently Asked Questions"
@@ -118,7 +133,9 @@ const Support = () => {
           <RedButton buttonText={"Ask a Question"} />
         </div>
         <FaqRender />
+      </div>
 
+      <div className="section">
         <Ad />
       </div>
       <Footer />

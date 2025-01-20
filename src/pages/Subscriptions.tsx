@@ -1,12 +1,14 @@
 import Ad from "../components/Ad";
+import SubscriptionMobile from "../components/Cards/SubscriptionMobile";
 import DoubleTitle from "../components/DoubleTitle";
 import Footer from "../components/Footer";
 import SubscriptionRender from "../components/Home/SubscriptionRender";
 import Search from "../components/Search/Search";
+import useIsMobile from "../hooks/useIsMobile";
 import styles from "../styles/Subscriptions.module.css";
 
 const subscriptionTable = {
-  headers: ["Features", "Basic", "Standard", "Premium"],
+  headers: ["Basic", "Standard", "Premium"],
   rows: [
     { title: "Price", values: ["$9.99/Month", "$12.99/Month", "$14.99/Month"] },
     {
@@ -45,6 +47,8 @@ const subscriptionTable = {
 };
 
 const Subscriptions = () => {
+  const isMobile = useIsMobile(); // Using the custom hook
+
   return (
     <>
       <Search />
@@ -56,38 +60,45 @@ const Subscriptions = () => {
           desc="StreamVibe offers three different plans to fit your needs: Basic, Standard, and Premium. Compare the features of each plan and choose the one that's right for you."
         />
 
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              {subscriptionTable.headers.map((header, index) => (
-                <th
-                  key={index}
-                  className={`${styles.tableHeader} ${
-                    header === subscriptionTable.highlight &&
-                    styles.popularHeader
-                  }`}
-                >
-                  {header}
-                  {header === subscriptionTable.highlight && (
-                    <span className={styles.popular}>Popular</span>
-                  )}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {subscriptionTable.rows.map((row, index) => (
-              <tr key={index}>
-                <td className={styles.tableTitle}>{row.title}</td>
-                {row.values.map((value, i) => (
-                  <td key={i} className={styles.tableValue}>
-                    {value}
-                  </td>
+        {!isMobile && (
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Features</th>
+
+                {subscriptionTable.headers.map((header, index) => (
+                  <th
+                    key={index}
+                    className={`${styles.tableHeader} ${
+                      header === subscriptionTable.highlight &&
+                      styles.popularHeader
+                    }`}
+                  >
+                    {header}
+                    {header === subscriptionTable.highlight && (
+                      <span className={styles.popular}>Popular</span>
+                    )}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {subscriptionTable.rows.map((row, index) => (
+                <tr key={index}>
+                  <td className={styles.tableTitle}>{row.title}</td>
+                  {row.values.map((value, i) => (
+                    <td key={i} className={styles.tableValue}>
+                      {value}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {isMobile && (
+          <SubscriptionMobile subscriptionTable={subscriptionTable} />
+        )}
         <Ad />
       </div>
       <Footer />

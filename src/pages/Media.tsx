@@ -60,7 +60,7 @@ const Media = () => {
             title={key}
             key={key}
             results={data[key]}
-            showOnPage={5}
+            defaultShowOnPage={5}
           />
         ))}
         <Ad />

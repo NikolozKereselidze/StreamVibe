@@ -1,4 +1,3 @@
-import Search from "../Search/Search";
 import styles from "../../styles/Home.module.css";
 import background from "../../assets/background/home-background.webp";
 import backgroundLogo from "../../assets/background/background-logo.webp";
@@ -7,7 +6,6 @@ import PlayButton from "../PlayButton";
 const Welcome = () => {
   return (
     <>
-      <Search isHome={true} />
       <div className={styles.backgroundWrap}>
         <div
           className={styles.background}

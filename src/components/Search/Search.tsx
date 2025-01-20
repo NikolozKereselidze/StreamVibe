@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { searchAll } from "../../api/tmdbApi";
 import { SearchResult } from "../../types/search";
 import logoIcon from "../../assets/logo/logo-icon.svg";
 import logoName from "../../assets/logo/logo-name.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { MagnifyingGlassIcon, BellIcon } from "@heroicons/react/24/outline";
+import {
+  MagnifyingGlassIcon,
+  BellIcon,
+  Bars3Icon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import styles from "../../styles/Nav.module.css";
 import SearchInput from "./SearchInput";
 import SearchResults from "../Result/SearchResults";
+import useIsMobile from "../../hooks/useIsMobile";
 
 interface SearchProps {
   isHome?: boolean;
@@ -19,9 +25,12 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
   const [error, setError] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [focusInput, setFocusInput] = useState<boolean>(false);
+  const [activeMobileNav, setActiveMobileNav] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const isMobile = useIsMobile(); // Using the custom hook
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -45,6 +54,7 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
     }
 
     setError(null);
+    setShowSearch(false);
 
     // Always update the URL with the new query
     const newUrl = `/search?q=${encodeURIComponent(query)}`;
@@ -56,6 +66,10 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
         .then((res) => setResults(res))
         .catch((err) => setError(err.message));
     }
+  };
+
+  const mobileNavHandler = () => {
+    setActiveMobileNav((prev) => !prev);
   };
 
   const searchToggle = () => {
@@ -75,58 +89,72 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
 
   return (
     <>
-      <div className={`${styles.wrapper} ${isHome && styles.homeNav}`}>
-        <div className={styles.logo}>
+      <div
+        className={`${styles.wrapper} ${isHome && styles.homeNav} ${
+          activeMobileNav && styles.mobileWrap
+        }`}
+      >
+        <div
+          className={`${styles.logo} ${activeMobileNav && styles.mobileLogo}`}
+        >
           <img src={logoIcon} />
-          <img src={logoName} />
+          {!isMobile && <img src={logoName} />}
         </div>
 
-        <nav className={styles.navigation}>
-          <ul>
-            <li>
-              <NavLink
-                to="/home"
-                className={({ isActive }) =>
-                  `${styles.nav} ${isActive ? styles.active : ""}`
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/media"
-                className={({ isActive }) =>
-                  `${styles.nav} ${isActive ? styles.active : ""}`
-                }
-              >
-                Movies & Shows
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/support"
-                className={({ isActive }) =>
-                  `${styles.nav} ${isActive ? styles.active : ""}`
-                }
-              >
-                Support
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/subscriptions"
-                className={({ isActive }) =>
-                  `${styles.nav} ${isActive ? styles.active : ""}`
-                }
-              >
-                Subscriptions
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+        {(!isMobile || activeMobileNav) && (
+          <nav
+            className={`${styles.navigation} ${isMobile && styles.mobileNav}`}
+          >
+            <ul className={`${activeMobileNav && styles.mobileUl}`}>
+              <li>
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) =>
+                    `${styles.nav} ${isActive ? styles.active : ""}`
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/media"
+                  className={({ isActive }) =>
+                    `${styles.nav} ${isActive ? styles.active : ""}`
+                  }
+                >
+                  Movies & Shows
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/support"
+                  className={({ isActive }) =>
+                    `${styles.nav} ${isActive ? styles.active : ""}`
+                  }
+                >
+                  Support
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/subscriptions"
+                  className={({ isActive }) =>
+                    `${styles.nav} ${isActive ? styles.active : ""}`
+                  }
+                >
+                  Subscriptions
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+        )}
 
-        <div className={styles.icons}>
+        <div
+          className={`${styles.icons} ${isMobile && styles.mobileIcons} ${
+            activeMobileNav && styles.activeMobileIcons
+          }`}
+        >
           {showSearch && (
             <SearchInput
               query={query}
@@ -138,8 +166,36 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
               focusInput={focusInput}
             />
           )}
-          {!showSearch && <MagnifyingGlassIcon onClick={searchToggle} />}
-          <BellIcon />
+          {!isMobile ? (
+            <>
+              {!showSearch && <MagnifyingGlassIcon onClick={searchToggle} />}
+              <BellIcon />
+            </>
+          ) : (
+            <>
+              {!showSearch && (
+                <MagnifyingGlassIcon
+                  onClick={searchToggle}
+                  className={styles.icon}
+                />
+              )}
+              <BellIcon className={styles.icon} />
+
+              {!activeMobileNav ? (
+                <Bars3Icon
+                  onClick={mobileNavHandler}
+                  className={`${styles.icon} ${
+                    activeMobileNav ? styles.mobileIcon : ""
+                  }`}
+                />
+              ) : (
+                <XMarkIcon
+                  onClick={mobileNavHandler}
+                  className={`${styles.icon} ${styles.closeIcon}`}
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
       <div>{results.length > 0 && <SearchResults results={results} />}</div>

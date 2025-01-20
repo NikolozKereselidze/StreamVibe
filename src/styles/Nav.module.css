@@ -140,11 +140,11 @@
   align-self: center;
 }
 
-.activeMobileIcons > svg {
+.closeIcon {
   position: absolute;
   top: 4.2rem;
   right: 6.2rem;
-  z-index: 100;
+  z-index: 10;
 }
 
 @media screen and (max-width: 1274px) {

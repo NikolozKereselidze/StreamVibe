@@ -15,22 +15,34 @@ import SearchInput from "./SearchInput";
 import SearchResults from "../Result/SearchResults";
 import useIsMobile from "../../hooks/useIsMobile";
 
-interface SearchProps {
-  isHome?: boolean;
-}
-
-const Search: React.FC<SearchProps> = ({ isHome = false }) => {
+const Search: React.FC = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [focusInput, setFocusInput] = useState<boolean>(false);
   const [activeMobileNav, setActiveMobileNav] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const isMobile = useIsMobile(); // Using the custom hook
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -90,9 +102,9 @@ const Search: React.FC<SearchProps> = ({ isHome = false }) => {
   return (
     <>
       <div
-        className={`${styles.wrapper} ${isHome && styles.homeNav} ${
+        className={`${styles.wrapper}  ${
           activeMobileNav && styles.mobileWrap
-        }`}
+        } ${scrolled && styles.scrolled}`}
       >
         <div
           className={`${styles.logo} ${activeMobileNav && styles.mobileLogo}`}

@@ -1,11 +1,26 @@
+import { Link } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
 
 const FooterPages = {
-  Home: ["Categories", "Devices", "Pricing", "FAQ"],
-  Movies: ["Genres", "Trending", "New Releases", "Popular"],
-  Shows: ["Genres", "Trending", "New Releases", "Popular"],
-  Support: ["Contact Us"],
-  Subscription: ["Plans", "Features"],
+  Home: [
+    { name: "Devices", path: "/home#devices" },
+    { name: "Pricing", path: "/home#pricing" },
+    { name: "FAQ", path: "/home#faq" },
+  ],
+  Movies: [
+    { name: "Trending", path: "/media#trending-movies" },
+    { name: "Upcoming", path: "/media#upcoming-movies" },
+    { name: "Must Watch", path: "/media#must-watch-movies" },
+  ],
+  Shows: [
+    { name: "Trending", path: "/media#trending-shows" },
+    { name: "Must Watch", path: "/media#must-watch-shows" },
+  ],
+  Support: [{ name: "Contact Us", path: "/support#contact-us" }],
+  Subscription: [
+    { name: "Plans", path: "/subscriptions#plans" },
+    { name: "Features", path: "/subscriptions#features" },
+  ],
   "Connect with Us": [
     {
       name: "GitHub",
@@ -43,6 +58,16 @@ const Footer = () => {
                   return (
                     <li key={link} className={styles.footerLi}>
                       {link}
+                    </li>
+                  );
+                }
+                if ("path" in link) {
+                  return (
+                    <li
+                      key={`${link.name}-${index}`}
+                      className={styles.footerLi}
+                    >
+                      <Link to={link.path}>{link.name}</Link>
                     </li>
                   );
                 }

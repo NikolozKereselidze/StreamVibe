@@ -32,9 +32,13 @@
 
 .footerLi {
   list-style: none;
-  color: var(--Grey-60);
+}
+
+.footerLi > a {
+  text-decoration: none;
   font-size: 1.6rem;
   font-weight: 500;
+  color: var(--Grey-60);
   cursor: pointer;
 }
 
@@ -85,7 +89,7 @@
     font-size: 1.6rem;
   }
 
-  .footerLi {
+  .footerLi > a {
     font-size: 1.5rem;
   }
 
@@ -108,7 +112,7 @@
     font-size: 1.4rem;
   }
 
-  .footerLi {
+  .footerLi > a {
     font-size: 1.4rem;
   }
 
@@ -144,7 +148,7 @@
     font-size: 1.3rem;
   }
 
-  .footerLi {
+  .footerLi > a {
     font-size: 1.3rem;
   }
 

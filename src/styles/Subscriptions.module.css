@@ -43,3 +43,16 @@ thead th {
 tbody > tr > td:first-child {
   white-space: nowrap;
 }
+
+@media screen and (max-width: 768px) {
+  td,
+  .tableValue,
+  thead th {
+    font-size: 1.3rem;
+    padding: 1.6rem;
+  }
+
+  .popular {
+    font-size: 1.2rem;
+  }
+}

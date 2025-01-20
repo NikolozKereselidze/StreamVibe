@@ -6,9 +6,18 @@
 }
 
 .wrapper {
+  position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   padding: 2rem 8% 0;
+  z-index: 10;
+}
+
+.scrolled {
+  background-color: var(--Black-06);
+  opacity: 0.95;
+  padding: 2rem 8%;
 }
 
 .logo {
@@ -43,7 +52,6 @@
 }
 
 .homeNav {
-  position: absolute;
   width: 100%;
   z-index: 2;
 }

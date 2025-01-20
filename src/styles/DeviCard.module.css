@@ -1,4 +1,5 @@
 .cardContainer {
+  flex: 1 1 40rem;
   display: flex;
   gap: 2.4rem;
   flex-direction: column;
@@ -36,4 +37,56 @@
   color: var(--Grey-60);
   font-size: 1.6rem;
   font-weight: 400;
+}
+
+@media screen and (max-width: 1274px) {
+  .cardContainer {
+    padding: 2.8rem;
+  }
+
+  .cardContainer > p {
+    font-size: 1.5rem;
+  }
+
+  .cardDevice > img {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .cardDevice > h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cardContainer {
+    padding: 2rem;
+    gap: 1.4rem;
+  }
+
+  .cardDevice > img {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardContainer {
+    padding: 1.8rem;
+    gap: 1.2rem;
+  }
+
+  .cardDevice > img {
+    height: 3rem;
+    width: 3rem;
+    padding: 6px;
+  }
+
+  .cardDevice > h3 {
+    font-size: 1.4rem;
+  }
+
+  .cardContainer > p {
+    font-size: 1.3rem;
+  }
 }

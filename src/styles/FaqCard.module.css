@@ -1,4 +1,5 @@
 .faq {
+  flex: 1 1 40rem;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -40,7 +41,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
   width: 100%;
 }
 
@@ -80,4 +80,57 @@
   opacity: 1;
   height: auto;
   visibility: visible;
+}
+
+@media screen and (max-width: 1274px) {
+  .gap {
+    gap: 2rem;
+  }
+
+  .index > p {
+    padding: 1.2rem 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .detailsHeader > h2 {
+    font-size: 1.8rem;
+  }
+
+  .detailsHeader > svg {
+    height: 2.6rem;
+    width: 2.6rem;
+  }
+
+  .details > p {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .detailsHeader > h2 {
+    font-size: 1.6rem;
+  }
+
+  .details > p {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .faq {
+    padding: 2rem 1.8rem;
+  }
+
+  .index > p {
+    padding: 1rem 1.4rem;
+    font-size: 1.3rem;
+  }
+
+  .detailsHeader > h2 {
+    font-size: 1.4rem;
+  }
+
+  .details > p {
+    font-size: 1.3rem;
+  }
 }

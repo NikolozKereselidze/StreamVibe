@@ -1,9 +1,9 @@
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-auto-rows: 1fr;
   gap: 2.4rem;
-  margin: 2vh 4vw;
+  margin: 5vh 4vw;
 }
 
 .wrapper > div {
@@ -17,7 +17,6 @@
 }
 
 .wrapper > div > img {
-  height: 100%;
   border-radius: 4px;
 }
 
@@ -91,4 +90,14 @@
 
 .knownFor {
   font-size: 1.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+
+  .wrapper > div > img {
+    height: auto;
+  }
 }

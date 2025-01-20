@@ -10,6 +10,7 @@
 }
 
 .info > h2 {
+  margin-top: auto;
   color: var(--Grey-75);
   font-size: 1.4rem;
   letter-spacing: 0.6px;
@@ -22,7 +23,6 @@
   justify-content: center;
   gap: 0.4rem;
   border-radius: 8px;
-
   background: var(--Black-08);
   padding: 6px 1rem;
   padding-left: 6px;
@@ -36,6 +36,7 @@
 .detail > h3 {
   font-size: 1.4rem;
   color: var(--Grey-65);
+  white-space: nowrap;
 }
 
 .calendarIcon {
@@ -44,4 +45,32 @@
 
 .starIcon {
   color: gold;
+}
+
+@media screen and (max-width: 1024px) {
+  .info > h2,
+  .detail > h3 {
+    font-size: 1.3rem;
+  }
+
+  .detail > svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .detail {
+    padding: 6px;
+  }
+
+  .info > h2,
+  .detail > h3 {
+    font-size: 1.2rem;
+  }
+
+  .detail > svg {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 }

@@ -28,3 +28,49 @@
   font-size: 1.6rem;
   font-weight: 400;
 }
+
+@media screen and (max-width: 1274px) {
+  .adWrap {
+    padding: 4rem 3rem;
+    gap: 1.2rem;
+  }
+
+  .adInfo > h2 {
+    font-size: 2.4rem;
+  }
+
+  .adInfo > p {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .adWrap {
+    padding: 3.6rem 2rem;
+  }
+
+  .adInfo > h2 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .adWrap {
+    padding: 3rem 2rem;
+    flex-direction: column;
+  }
+
+  .adInfo {
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+  }
+
+  .adInfo > h2 {
+    font-size: 1.4rem;
+  }
+
+  .adInfo > p {
+    font-size: 1.3rem;
+  }
+}

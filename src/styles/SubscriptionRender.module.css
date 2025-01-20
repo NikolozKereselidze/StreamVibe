@@ -32,7 +32,40 @@
 }
 
 .subscriptionCards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+}
+
+@media screen and (max-width: 1274px) {
+  .planButtons {
+    padding: 8px;
+  }
+  .planButtons > button {
+    padding: 1rem 1.6rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .planButtons > button {
+    padding: 1rem 1.4rem;
+    font-optical-sizing: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .faqTitles {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+  .planButtons {
+    padding: 6px;
+  }
+
+  .planButtons > button {
+    padding: 1rem 1.4rem;
+    font-size: 1.2rem;
+  }
 }

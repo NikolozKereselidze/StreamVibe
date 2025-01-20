@@ -79,3 +79,90 @@
 .connect > li > a > svg {
   color: #fff;
 }
+
+@media screen and (max-width: 1274px) {
+  .footerPage > h2 {
+    font-size: 1.6rem;
+  }
+
+  .footerLi {
+    font-size: 1.5rem;
+  }
+
+  .connect > li {
+    padding: 0.8rem;
+  }
+
+  .owner,
+  .claim > p {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footerWrap {
+    padding: 8rem 8rem 4rem 4rem;
+  }
+
+  .footerPage > h2 {
+    font-size: 1.4rem;
+  }
+
+  .footerLi {
+    font-size: 1.4rem;
+  }
+
+  .connect > li {
+    padding: 0.4rem;
+  }
+
+  .claim {
+    gap: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footerWrap {
+    padding: 2rem;
+  }
+
+  .footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 2.4rem;
+  }
+
+  .footerPage {
+    align-items: center;
+  }
+
+  .footerUl {
+    align-items: center;
+  }
+
+  .footerPage > h2 {
+    font-size: 1.3rem;
+  }
+
+  .footerLi {
+    font-size: 1.3rem;
+  }
+
+  .connect > li > a > svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .footerCopyright {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .owner {
+    font-size: 1.1rem;
+  }
+
+  .claim > p {
+    font-size: 1.2rem;
+  }
+}

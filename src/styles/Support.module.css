@@ -90,3 +90,70 @@
   height: 100% !important;
   color: #fff !important;
 }
+
+@media screen and (max-width: 1024px) {
+  .supportWelcome > div {
+    padding-right: 0;
+  }
+
+  .supportWrap {
+    display: flex;
+  }
+
+  .supportForm {
+    padding: 2.4rem;
+    gap: 2.4rem;
+  }
+
+  .inputLabel > label,
+  .textAreaWrap > label {
+    font-size: 1.4rem;
+  }
+
+  .inputLabel > input {
+    font-size: 1.3rem;
+  }
+
+  .textAreaWrap > textarea {
+    height: 5em;
+  }
+
+  .supportImg {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .supportWelcome {
+    margin-top: 3.2rem;
+  }
+  .supportWrap {
+    gap: 2.4rem;
+  }
+
+  .supportForm {
+    padding: 1.6rem;
+    gap: 2rem;
+  }
+
+  .inputWrap {
+    flex-direction: column;
+  }
+
+  .inputLabel > label,
+  .textAreaWrap > label,
+  .inputLabel > input,
+  .textAreaWrap > textarea {
+    font-size: 1.2rem;
+  }
+
+  .inputLabel > input {
+    padding: 1rem;
+  }
+
+  .faqTitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+}

@@ -29,12 +29,14 @@ interface MultipleCardsProps {
   defaultShowOnPage: number; // Default number of items to show per page
   results: SearchResult[];
   title: string;
+  id?: string;
 }
 
 const MultipleCards = ({
   defaultShowOnPage,
   results,
   title,
+  id,
 }: MultipleCardsProps) => {
   const [showOnPage, setShowOnPage] = useState(defaultShowOnPage);
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +87,7 @@ const MultipleCards = ({
 
   return (
     <>
-      <div className={styles.wrap}>
+      <div className={styles.wrap} id={id}>
         <div className={styles.title}>
           <h2>{title}</h2>
           <div className={styles.navIcons}>

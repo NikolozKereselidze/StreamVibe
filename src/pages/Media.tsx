@@ -17,7 +17,7 @@ const FETCH_FUNCTIONS = [
   { fetcher: fetchUpcomingMovies, title: "Upcoming Movies" },
   { fetcher: fetchTopRatedMovies, title: "Must Watch Movies" },
   { fetcher: fetchPopularShows, title: "Trending Shows" },
-  { fetcher: fetchTopRatedShows, title: "Must - Watch Shows" },
+  { fetcher: fetchTopRatedShows, title: "Must Watch Shows" },
 ];
 
 const Media = () => {
@@ -26,8 +26,6 @@ const Media = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     const fetchData = async () => {
       try {
         const results = await Promise.all(
@@ -57,10 +55,11 @@ const Media = () => {
       <div className="section">
         {Object.keys(data).map((key) => (
           <MultipleCards
+            id={`${key.replace(/\s/g, "-").toLowerCase()}`}
             title={key}
-            key={key}
             results={data[key]}
             defaultShowOnPage={5}
+            key={key}
           />
         ))}
         <Ad />

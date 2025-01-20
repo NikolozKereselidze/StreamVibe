@@ -22,7 +22,7 @@ const Support = () => {
   return (
     <>
       <Search />
-      <div className="section">
+      <div className="section" id="contact-us">
         {isMobile && (
           <div className={styles.supportWelcome}>
             <DoubleTitle

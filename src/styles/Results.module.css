@@ -13,7 +13,7 @@
 
 .wrapper > div:hover {
   transform: scale(1.05) translateX(12px) translateY(-10px);
-  z-index: 100;
+  z-index: 2;
 }
 
 .wrapper > div > img {

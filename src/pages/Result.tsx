@@ -29,6 +29,7 @@ const Result = () => {
         .catch((err) => setError(err.message));
     }
     setVideoKey(null);
+    window.scrollTo(0, 0);
   }, [item]);
 
   const handlePlayNow = async () => {

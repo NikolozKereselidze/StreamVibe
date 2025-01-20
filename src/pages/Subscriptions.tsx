@@ -52,7 +52,7 @@ const Subscriptions = () => {
   return (
     <>
       <Search />
-      <div className="section">
+      <div className="section" id="plans">
         <SubscriptionRender />
 
         <DoubleTitle
@@ -61,7 +61,7 @@ const Subscriptions = () => {
         />
 
         {!isMobile && (
-          <table className={styles.table}>
+          <table className={styles.table} id="features">
             <thead>
               <tr>
                 <th>Features</th>

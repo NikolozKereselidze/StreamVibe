@@ -8,6 +8,7 @@ import SubscriptionRender from "../components/Home/SubscriptionRender";
 import Ad from "../components/Ad";
 import RedButton from "../components/RedButton";
 import Footer from "../components/Footer";
+import Search from "../components/Search/Search";
 
 const fadeIn = {
   hidden: { opacity: 0, x: -50 },
@@ -27,10 +28,11 @@ const motionProps = {
 const Home = () => {
   return (
     <>
+      <Search />
       <motion.div {...motionProps} className={styles.homeWrapper}>
         <Welcome />
       </motion.div>
-      <motion.div {...motionProps} className="section">
+      <motion.div id="devices" {...motionProps} className="section">
         <DoubleTitle
           heading="We Provide you streaming experience across various devices."
           desc="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
@@ -40,7 +42,7 @@ const Home = () => {
         </div>
       </motion.div>
 
-      <motion.div {...motionProps} className="section">
+      <motion.div id="faq" {...motionProps} className="section">
         <div className={styles.faqTitles}>
           <DoubleTitle
             heading="Frequently Asked Questions"
@@ -51,7 +53,7 @@ const Home = () => {
         <FaqRender />
       </motion.div>
 
-      <motion.div {...motionProps} className="section">
+      <motion.div id="pricing" {...motionProps} className="section">
         <SubscriptionRender />
       </motion.div>
 

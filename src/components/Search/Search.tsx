@@ -58,6 +58,14 @@ const Search: React.FC = () => {
     }
   }, [location.search]);
 
+  useEffect(() => {
+    if (activeMobileNav) {
+      document.body.classList.add("bodyNoScroll");
+    } else {
+      document.body.classList.remove("bodyNoScroll");
+    }
+  }, [activeMobileNav]);
+
   const handleSearch = () => {
     if (query.trim() === "") {
       setResults([]);
@@ -164,7 +172,7 @@ const Search: React.FC = () => {
 
         <div
           className={`${styles.icons} ${isMobile && styles.mobileIcons} ${
-            activeMobileNav && styles.activeMobileIcons
+            activeMobileNav ? styles.activeMobileIcons : ""
           }`}
         >
           {showSearch && (

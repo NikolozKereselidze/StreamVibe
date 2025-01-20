@@ -118,6 +118,10 @@ html {
   font-size: 62.5%;
 }
 
+.bodyNoScroll {
+  overflow: hidden;
+}
+
 .section {
   padding: 6.2rem 8rem;
   display: flex;

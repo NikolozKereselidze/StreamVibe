@@ -218,9 +218,13 @@ const Search: React.FC = () => {
           )}
         </div>
       </div>
-      {results.length > 0 && location.pathname === "/search" && (
-        <SearchResults results={results} />
-      )}
+
+      {location.pathname === "/search" &&
+        (results.length > 0 ? (
+          <SearchResults results={results} />
+        ) : (
+          <p className={styles.loading}>Loading Results...</p>
+        ))}
     </>
   );
 };

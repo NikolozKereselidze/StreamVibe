@@ -47,6 +47,7 @@
 .cardWrapper {
   display: flex;
   gap: 2rem;
+  min-height: 50rem;
 }
 
 .card {
@@ -80,6 +81,12 @@
   background: var(--Red-45);
 }
 
+@media screen and (max-width: 1274px) {
+  .cardWrapper {
+    min-height: 30rem;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .wrap {
     padding: 3rem;
@@ -109,6 +116,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .cardWrapper {
+    min-height: 25rem;
+  }
+
   .title {
     flex-direction: column;
     gap: 2rem;

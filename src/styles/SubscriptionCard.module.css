@@ -48,7 +48,7 @@
   gap: 1.2rem;
 }
 
-.cardButtons > button {
+.cardButtons > a > button {
   padding: 1.4rem 2rem;
   border-radius: 6px;
   color: #fff;
@@ -101,7 +101,7 @@
     font-size: 1.5rem;
   }
 
-  .cardButtons > button {
+  .cardButtons > a > button {
     padding: 1.2rem 1.6rem;
     white-space: nowrap;
     font-size: 1.2rem;
@@ -111,6 +111,10 @@
 @media screen and (max-width: 1024px) {
   .cardButtons {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .cardButtons > a > button {
     width: 100%;
   }
 }
@@ -132,7 +136,7 @@
     font-size: 1.4rem;
   }
 
-  .cardButtons > button {
+  .cardButtons > a > button {
     padding: 1rem 1.4rem;
     font-size: 1.1rem;
   }

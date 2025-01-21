@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../../styles/SubscriptionCard.module.css";
 import RedButton from "../RedButton";
 
@@ -50,8 +51,12 @@ const SubscriptionCard = ({ duration }: { duration: string }) => {
           </div>
 
           <div className={styles.cardButtons}>
-            <button className={styles.trialButton}>Start Free Trial</button>
-            <RedButton buttonText={"Choose Plan"} />
+            <Link to="/subscriptions">
+              <button className={styles.trialButton}>Start Free Trial</button>
+            </Link>
+            <Link to="/subscriptions">
+              <RedButton buttonText={"Choose Plan"} />
+            </Link>
           </div>
         </div>
       ))}

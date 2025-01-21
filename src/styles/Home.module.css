@@ -61,6 +61,10 @@
   font-weight: 400;
 }
 
+.mediaLink {
+  text-decoration: none;
+}
+
 /* Device */
 .deviceCardWrapper {
   display: flex;

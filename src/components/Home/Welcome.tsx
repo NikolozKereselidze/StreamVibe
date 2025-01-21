@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import background from "../../assets/background/home-background.webp";
 import backgroundLogo from "../../assets/background/background-logo.webp";
 import PlayButton from "../PlayButton";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   return (
@@ -29,7 +30,9 @@ const Welcome = () => {
               the content you want to watch.
             </p>
           </div>
-          <PlayButton title="Start Watching Now" />
+          <Link to="/media" className={styles.mediaLink}>
+            <PlayButton title="Start Watching Now" />
+          </Link>
         </div>
       </div>
     </>

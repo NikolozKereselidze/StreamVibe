@@ -47,7 +47,7 @@
 .cardWrapper {
   display: flex;
   gap: 2rem;
-  min-height: 50rem;
+  min-height: 45rem;
 }
 
 .card {

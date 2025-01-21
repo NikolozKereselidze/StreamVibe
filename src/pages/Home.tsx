@@ -9,6 +9,7 @@ import Ad from "../components/Ad";
 import RedButton from "../components/RedButton";
 import Footer from "../components/Footer";
 import Search from "../components/Search/Search";
+import { Link } from "react-router-dom";
 
 const fadeIn = {
   hidden: { opacity: 0, x: -50 },
@@ -48,7 +49,9 @@ const Home = () => {
             heading="Frequently Asked Questions"
             desc="Check out our FAQ section to find answers to the most common questions about StreamVibe."
           />
-          <RedButton buttonText={"Ask a Question"} />
+          <Link to="/support">
+            <RedButton buttonText={"Ask a Question"} />
+          </Link>
         </div>
         <FaqRender />
       </motion.div>

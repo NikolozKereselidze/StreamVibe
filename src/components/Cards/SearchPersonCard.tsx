@@ -7,13 +7,15 @@ interface PersonCardProps {
 
 const SearchPersonCard: React.FC<PersonCardProps> = ({ item }) => (
   <>
-    {item.profile_path && (
+    {item.profile_path || item.poster_path || item.backdrop_path ? (
       <img
         src={`https://image.tmdb.org/t/p/w500${
           item.profile_path || item.poster_path || item.backdrop_path
         }`}
         alt={`${item.name}`}
       />
+    ) : (
+      <p>Image not Available</p>
     )}
 
     <div className={`${styles.details} ${styles.detailsPerson}`}>

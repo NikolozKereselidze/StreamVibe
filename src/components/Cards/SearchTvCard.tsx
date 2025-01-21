@@ -21,7 +21,7 @@ const SearchTvCard: React.FC<TVCardProps> = ({ item }) => {
 
   return (
     <>
-      {item.poster_path && (
+      {item.poster_path || item.backdrop_path ? (
         <img
           src={`https://image.tmdb.org/t/p/w500${
             item.poster_path || item.backdrop_path
@@ -29,6 +29,8 @@ const SearchTvCard: React.FC<TVCardProps> = ({ item }) => {
           alt={`${item.name} poster`}
           onClick={() => clickHandler(item, navigate)}
         />
+      ) : (
+        <p>Image not Available</p>
       )}
 
       <div className={styles.details}>

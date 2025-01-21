@@ -18,12 +18,14 @@ const SearchMovieCard: React.FC<MovieCardProps> = ({ item }) => {
 
   return (
     <>
-      {item.poster_path && (
+      {item.poster_path ? (
         <img
           src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
           alt={`${item.title} poster`}
           onClick={() => clickHandler(item)}
         />
+      ) : (
+        <p>Image not Available</p>
       )}
 
       <div className={styles.details}>

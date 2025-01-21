@@ -132,7 +132,7 @@
 
   .footer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 2.4rem;
   }
 
@@ -168,5 +168,11 @@
 
   .claim > p {
     font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 528px) {
+  .footer {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   }
 }

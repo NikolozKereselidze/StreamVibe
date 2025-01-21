@@ -5,6 +5,8 @@ import styles from "../styles/Result.module.css";
 import PlayButton from "../components/PlayButton";
 import {
   CalendarIcon,
+  ClockIcon,
+  EyeSlashIcon,
   FaceSmileIcon,
   LanguageIcon,
 } from "@heroicons/react/24/outline";
@@ -131,7 +133,11 @@ const Result = () => {
                     <h3>Release Year</h3>
                   </div>
                   <p className={styles.releaseYear}>
-                    {item.first_air_date || item.releaseYear}
+                    {item.first_air_date
+                      ? new Date(item.first_air_date).getFullYear()
+                      : item.releaseYear
+                      ? new Date(item.releaseYear).getFullYear()
+                      : "N/A"}
                   </p>
                 </div>
 
@@ -180,6 +186,28 @@ const Result = () => {
                     ) : (
                       <p className={styles.genres}>{item.genres}</p>
                     )}
+                  </div>
+                </div>
+
+                <div className={styles.infoWrap}>
+                  <div className={styles.infoTitle}>
+                    <EyeSlashIcon />
+                    <h3>Age Rating</h3>
+                  </div>
+                  <div className={styles.genresWrap}>
+                    <p className={styles.genres}>{item.ageRating}</p>
+                  </div>
+                </div>
+
+                <div className={styles.infoWrap}>
+                  <div className={styles.infoTitle}>
+                    <ClockIcon />
+                    <h3>{item.seasons ? "Seasons" : "Runtime"}</h3>
+                  </div>
+                  <div className={styles.genresWrap}>
+                    <p className={styles.genres}>
+                      {item.seasons || item.runtime}
+                    </p>
                   </div>
                 </div>
               </div>

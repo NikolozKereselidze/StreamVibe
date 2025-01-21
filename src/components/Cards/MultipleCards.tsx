@@ -110,8 +110,8 @@ const MultipleCards = ({
             </button>
           </div>
         </div>
-        <div className={styles.cardWrapper}>
-          <AnimatePresence>
+        <AnimatePresence>
+          <div className={styles.cardWrapper}>
             {currentShowing.map((result, i) => (
               <motion.div
                 {...motionProps}
@@ -126,8 +126,8 @@ const MultipleCards = ({
                 <MovieCard key={result.id} item={result} />
               </motion.div>
             ))}
-          </AnimatePresence>
-        </div>
+          </div>
+        </AnimatePresence>
       </div>
     </>
   );

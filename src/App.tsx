@@ -1,27 +1,16 @@
-import { lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
-const Home = lazy(() => import("./pages/Home"));
-const Search = lazy(() => import("./components/Search/Search"));
-const Result = lazy(() => import("./pages/Result"));
-const Support = lazy(() => import("./pages/Support"));
-const Subscriptions = lazy(() => import("./pages/Subscriptions"));
-const Media = lazy(() => import("./pages/Media"));
+import { Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Scroll from "./utility/Scroll";
+import "./App.css";
+import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
 function App() {
   return (
     <BrowserRouter>
       <Scroll />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/media" element={<Media />} />
-        <Route path="/support" element={<Support />} />
-        <Route path="/subscriptions" element={<Subscriptions />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <AnimatedRoutes />
+      </Suspense>
     </BrowserRouter>
   );
 }

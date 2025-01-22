@@ -10,6 +10,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
 import useIsMobile from "../hooks/useIsMobile";
+import MotionWrapper from "../components/MotionWrapper";
 
 const Support = () => {
   const [name, setName] = useState<string>("");
@@ -22,6 +23,7 @@ const Support = () => {
   return (
     <>
       <Search />
+
       <div className="section" id="contact-us">
         {isMobile && (
           <div className={styles.supportWelcome}>
@@ -124,16 +126,18 @@ const Support = () => {
         </div>
       </div>
 
-      <div className="section">
-        <div className={styles.faqTitle}>
-          <DoubleTitle
-            heading="Frequently Asked Questions"
-            desc="Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about StreamVibe."
-          />
-          <RedButton buttonText={"Ask a Question"} />
+      <MotionWrapper type="fadeDown">
+        <div className="section">
+          <div className={styles.faqTitle}>
+            <DoubleTitle
+              heading="Frequently Asked Questions"
+              desc="Got questions? We've got answers! Check out our FAQ section to find answers to the most common questions about StreamVibe."
+            />
+            <RedButton buttonText={"Ask a Question"} />
+          </div>
+          <FaqRender />
         </div>
-        <FaqRender />
-      </div>
+      </MotionWrapper>
 
       <div className="section">
         <Ad />

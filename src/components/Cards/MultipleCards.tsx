@@ -5,6 +5,7 @@ import MovieCard from "./MovieCad";
 import { useNavigate } from "react-router-dom";
 import { SearchResult } from "../../types/search";
 import { AnimatePresence, motion } from "framer-motion";
+import MotionWrapper from "../MotionWrapper";
 
 const fadeIn = {
   hidden: { opacity: 0, x: 50 },
@@ -87,48 +88,52 @@ const MultipleCards = ({
 
   return (
     <>
-      <div className={styles.wrap} id={id}>
-        <div className={styles.title}>
-          <h2>{title}</h2>
-          <div className={styles.navIcons}>
-            <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-              <ArrowLeftIcon />
-            </button>
-            <span className={styles.pageIndicator}>
-              {Array.from({ length: totalPages }).map((_, index) => (
-                <span
-                  key={index}
-                  className={index + 1 === currentPage ? styles.activePage : ""}
-                ></span>
-              ))}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              <ArrowRightIcon />
-            </button>
-          </div>
-        </div>
-        <AnimatePresence>
-          <div className={styles.cardWrapper}>
-            {currentShowing.map((result, i) => (
-              <motion.div
-                {...motionProps}
-                key={`${result.id}-${i}`}
-                className={styles.card}
-                onClick={() => clickHandler(result)}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.3 },
-                }}
+      <MotionWrapper type="scaleUp">
+        <div className={styles.wrap} id={id}>
+          <div className={styles.title}>
+            <h2>{title}</h2>
+            <div className={styles.navIcons}>
+              <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                <ArrowLeftIcon />
+              </button>
+              <span className={styles.pageIndicator}>
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <span
+                    key={index}
+                    className={
+                      index + 1 === currentPage ? styles.activePage : ""
+                    }
+                  ></span>
+                ))}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
               >
-                <MovieCard key={result.id} item={result} />
-              </motion.div>
-            ))}
+                <ArrowRightIcon />
+              </button>
+            </div>
           </div>
-        </AnimatePresence>
-      </div>
+          <AnimatePresence>
+            <div className={styles.cardWrapper}>
+              {currentShowing.map((result, i) => (
+                <motion.div
+                  {...motionProps}
+                  key={`${result.id}-${i}`}
+                  className={styles.card}
+                  onClick={() => clickHandler(result)}
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.3 },
+                  }}
+                >
+                  <MovieCard key={result.id} item={result} />
+                </motion.div>
+              ))}
+            </div>
+          </AnimatePresence>
+        </div>
+      </MotionWrapper>
     </>
   );
 };

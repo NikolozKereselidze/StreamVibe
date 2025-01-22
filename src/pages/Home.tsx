@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import DoubleTitle from "../components/DoubleTitle";
 import DeviceCardRender from "../components/Home/DeviceCardRender";
 import FaqRender from "../components/Home/FaqRender";
@@ -10,59 +9,55 @@ import RedButton from "../components/RedButton";
 import Footer from "../components/Footer";
 import Search from "../components/Search/Search";
 import { Link } from "react-router-dom";
+import MotionWrapper from "../components/MotionWrapper";
 
-const fadeIn = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0, // Brings the element back to its original position
-    transition: { duration: 1 }, // Duration of 1 second for the entire transition
-  },
-};
-
-const motionProps = {
-  initial: fadeIn.hidden,
-  whileInView: fadeIn.visible,
-  variants: fadeIn, // corrected this line
-  viewport: { once: true },
-};
 const Home = () => {
   return (
     <>
       <Search />
-      <motion.div {...motionProps} className={styles.homeWrapper}>
-        <Welcome />
-      </motion.div>
-      <motion.div id="devices" {...motionProps} className="section">
-        <DoubleTitle
-          heading="We Provide you streaming experience across various devices."
-          desc="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
-        />
-        <div className={styles.deviceCardWrapper}>
-          <DeviceCardRender />
+      <MotionWrapper type="fadeUp">
+        <div className={styles.homeWrapper}>
+          <Welcome />
         </div>
-      </motion.div>
-
-      <motion.div id="faq" {...motionProps} className="section">
-        <div className={styles.faqTitles}>
+      </MotionWrapper>
+      <MotionWrapper type="fadeLeft">
+        <div id="devices" className="section">
           <DoubleTitle
-            heading="Frequently Asked Questions"
-            desc="Check out our FAQ section to find answers to the most common questions about StreamVibe."
+            heading="We Provide you streaming experience across various devices."
+            desc="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
           />
-          <Link to="/support">
-            <RedButton buttonText={"Ask a Question"} />
-          </Link>
+          <div className={styles.deviceCardWrapper}>
+            <DeviceCardRender />
+          </div>
         </div>
-        <FaqRender />
-      </motion.div>
+      </MotionWrapper>
 
-      <motion.div id="pricing" {...motionProps} className="section">
-        <SubscriptionRender />
-      </motion.div>
+      <MotionWrapper type="fadeRight">
+        <div id="faq" className="section">
+          <div className={styles.faqTitles}>
+            <DoubleTitle
+              heading="Frequently Asked Questions"
+              desc="Check out our FAQ section to find answers to the most common questions about StreamVibe."
+            />
+            <Link to="/support">
+              <RedButton buttonText={"Ask a Question"} />
+            </Link>
+          </div>
+          <FaqRender />
+        </div>
+      </MotionWrapper>
 
-      <motion.div {...motionProps} className="section">
-        <Ad />
-      </motion.div>
+      <MotionWrapper type="scaleUp">
+        <div id="pricing" className="section">
+          <SubscriptionRender />
+        </div>
+      </MotionWrapper>
+
+      <div className="section">
+        <MotionWrapper>
+          <Ad />
+        </MotionWrapper>
+      </div>
 
       <Footer />
     </>

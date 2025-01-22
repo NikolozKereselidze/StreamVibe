@@ -1,8 +1,7 @@
-import { lazy } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Lazy-loaded components
 const Home = lazy(() => import("../pages/Home"));
 const Search = lazy(() => import("../components/Search/Search"));
 const Result = lazy(() => import("../pages/Result"));
@@ -77,9 +76,15 @@ export function AnimatedRoutes() {
   );
 }
 
-// Wrapper for animated transitions
 function PageWrapper({ children }: { children: React.ReactNode }) {
-  return (
+  const [showRoutes, setShowRoutes] = useState(false);
+
+  useEffect(() => {
+    // Add a delay before showing AnimatedRoutes
+    const timer = setTimeout(() => setShowRoutes(true), 500);
+    return () => clearTimeout(timer); // Cleanup the timer on unmount
+  }, []);
+  return showRoutes ? (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -91,5 +96,7 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
     >
       {children}
     </motion.div>
+  ) : (
+    <span className="loader"></span>
   );
 }

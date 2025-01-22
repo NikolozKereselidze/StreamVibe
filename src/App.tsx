@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Scroll />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<span className="loader"></span>}>
         <AnimatedRoutes />
       </Suspense>
     </BrowserRouter>

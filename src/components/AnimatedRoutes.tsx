@@ -90,7 +90,7 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -50, scale: 0.95 }}
       transition={{
-        duration: 0.5,
+        duration: 0.3,
         ease: [0.42, 0, 0.58, 1], // Custom easing for a smooth animation
       }}
     >

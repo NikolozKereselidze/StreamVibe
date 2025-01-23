@@ -117,8 +117,8 @@ const Search: React.FC = () => {
         <div
           className={`${styles.logo} ${activeMobileNav && styles.mobileLogo}`}
         >
-          <img src={logoIcon} />
-          {!isMobile && <img src={logoName} />}
+          <img src={logoIcon} alt="logo" />
+          {!isMobile && <img src={logoName} alt="logo name" />}
         </div>
 
         {(!isMobile || activeMobileNav) && (

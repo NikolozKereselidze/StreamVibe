@@ -149,12 +149,16 @@ export const fetchResult = (
 export const fetchVideo = ({
   media_type,
   id,
+  item,
 }: {
   media_type: string;
   id: number;
+  item?: SearchResult;
 }) => {
   return fetch(
-    `https://api.themoviedb.org/3/${media_type}/${id}/videos?language=en-US`,
+    `https://api.themoviedb.org/3/${
+      media_type ? media_type : item?.seasons ? "tv" : "movie"
+    }/${id}/videos?language=en-US`,
     options
   )
     .then((res) => res.json())

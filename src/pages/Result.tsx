@@ -42,6 +42,7 @@ const Result = () => {
       const videoData = await fetchVideo({
         media_type: item.media_type,
         id: item.id,
+        item: item,
       });
       const trailer = videoData.results.find(
         (video: { type: string }) => video.type === "Trailer"

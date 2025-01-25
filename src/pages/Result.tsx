@@ -25,7 +25,6 @@ const Result = () => {
   const [videoKey, setVideoKey] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log(item);
     if (item) {
       fetchRecommendations(item.media_type, item.id, item)
         .then(setRecommendations)

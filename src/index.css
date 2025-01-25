@@ -239,6 +239,15 @@ html {
   animation: rotation 1s linear infinite;
 }
 
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  color: red;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

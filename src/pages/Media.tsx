@@ -38,7 +38,7 @@ const Media = () => {
         setData(formattedData);
       } catch (err) {
         console.error(err);
-        setError("Failed to load data.");
+        setError("Failed to load data. Please retry");
       } finally {
         setLoading(false);
       }
@@ -47,7 +47,7 @@ const Media = () => {
   }, []);
 
   if (loading) return;
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="error">{error}</p>;
 
   return (
     <>

@@ -46,7 +46,7 @@ export const fetchTrendingMovies = async (): Promise<SearchResult[]> => {
     throw new Error("No trending movies found.");
   }
 
-  return data.results;
+  return fetchResult(data);
 };
 
 // MOVIES
@@ -63,7 +63,7 @@ export const fetchUpcomingMovies = async (): Promise<SearchResult[]> => {
     throw new Error("No trending movies found.");
   }
 
-  return data.results;
+  return fetchResult(data, "movie");
 };
 
 export const fetchTopRatedMovies = async (): Promise<SearchResult[]> => {
@@ -78,7 +78,7 @@ export const fetchTopRatedMovies = async (): Promise<SearchResult[]> => {
     throw new Error("No trending movies found.");
   }
 
-  return data.results;
+  return fetchResult(data, "movie");
 };
 
 // SHOWS
@@ -95,7 +95,7 @@ export const fetchTopRatedShows = async (): Promise<SearchResult[]> => {
     throw new Error("No trending movies found.");
   }
 
-  return data.results;
+  return fetchResult(data, "tv");
 };
 
 export const fetchPopularShows = async (): Promise<SearchResult[]> => {
@@ -110,7 +110,7 @@ export const fetchPopularShows = async (): Promise<SearchResult[]> => {
     throw new Error("No trending movies found.");
   }
 
-  return data.results;
+  return fetchResult(data, "tv");
 };
 
 export const fetchResult = (
@@ -118,14 +118,17 @@ export const fetchResult = (
     | {
         results: SearchResult[];
       }
-    | SearchResult
+    | SearchResult,
+  type?: string
 ): Promise<SearchResult[]> => {
   const resultsArray = "results" in data ? data.results : [data];
 
   return Promise.all(
     resultsArray.map(async (item: SearchResult): Promise<SearchResult> => {
-      if (item.media_type === "movie" || item.media_type === "tv") {
-        const detailsUrl = `${BASE_URL}/${item.media_type}/${item.id}?language=en-US`;
+      if (item.media_type == "movie" || item.media_type === "tv" || type) {
+        const detailsUrl = `${BASE_URL}/${item.media_type || type}/${
+          item.id
+        }?language=en-US`;
         const detailsResponse = await fetch(detailsUrl, options);
         const details = await detailsResponse.json();
 
@@ -161,10 +164,11 @@ export const fetchVideo = ({
 
 export const fetchRecommendations = async (
   mediaType: string,
-  id: number
+  id: number,
+  item: SearchResult
 ): Promise<SearchResult[]> => {
   const url = `${BASE_URL}/${
-    mediaType ? mediaType : "movie"
+    mediaType ? mediaType : item.seasons ? "tv" : "movie"
   }/${id}/recommendations?language=en-US`;
   const response = await fetch(url, options);
   if (!response.ok) {

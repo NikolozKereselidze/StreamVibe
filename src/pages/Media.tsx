@@ -46,7 +46,7 @@ const Media = () => {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return;
   if (error) return <p>{error}</p>;
 
   return (

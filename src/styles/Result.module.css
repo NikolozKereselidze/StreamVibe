@@ -164,10 +164,10 @@
 
 .videoContainer iframe {
   /* Extend it beyond the viewport... */
-  width: 300%;
+  width: 400%;
   height: 100%;
   /* ...and bring it back again */
-  margin-left: -100%;
+  margin-left: -150%;
 }
 
 .noPad {
@@ -184,7 +184,7 @@
   padding: 1.4rem 2.4rem;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1;
   pointer-events: all;
   font-size: 1.4rem;
 }

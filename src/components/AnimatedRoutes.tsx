@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -84,21 +84,27 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
     const timer = setTimeout(() => setShowRoutes(true), 500);
     return () => clearTimeout(timer); // Cleanup the timer on unmount
   }, []);
-  return showRoutes ? (
-    <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -50, scale: 0.95 }}
-      transition={{
-        duration: 0.3,
-        ease: [0.42, 0, 0.58, 1], // Custom easing for a smooth animation
-      }}
-    >
-      {children}
-    </motion.div>
-  ) : (
-    <div className="loader-container">
-      <span className="loader"></span>
-    </div>
+  return (
+    showRoutes && (
+      <Suspense
+        fallback={
+          <div className="loader-container">
+            <span className="loader"></span>
+          </div>
+        }
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -50, scale: 0.95 }}
+          transition={{
+            duration: 0.3,
+            ease: [0.42, 0, 0.58, 1], // Custom easing for a smooth animation
+          }}
+        >
+          {children}
+        </motion.div>
+      </Suspense>
+    )
   );
 }

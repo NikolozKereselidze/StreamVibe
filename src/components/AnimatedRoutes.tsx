@@ -78,23 +78,20 @@ export function AnimatedRoutes() {
 
 function PageWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<boolean>(true);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => setLoading(false), 500); // Add a delay before setting loading to false
     return () => clearTimeout(timer); // Cleanup the timer on unmount
-  }, [children]);
-  // const [showRoutes, setShowRoutes] = useState(false);
+  }, [pathname]);
 
-  // useEffect(() => {
-  //   // Add a delay before showing AnimatedRoutes
-  //   const timer = setTimeout(() => setShowRoutes(true), 500);
-  //   return () => clearTimeout(timer); // Cleanup the timer on unmount
-  // }, []);
-  return loading ? (
+  return loading && pathname !== "/media" ? (
     <div className="loader-container">
       <span className="loader"></span>
     </div>
+  ) : pathname === "/media" ? (
+    <>{children}</>
   ) : (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.95 }}

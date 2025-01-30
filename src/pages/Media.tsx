@@ -11,6 +11,7 @@ import {
   fetchPopularShows,
 } from "../api/tmdbApi";
 import { SearchResult } from "../types/search";
+import { motion } from "framer-motion";
 
 const FETCH_FUNCTIONS = [
   { fetcher: fetchTrendingMovies, title: "Trending Movies" },
@@ -22,12 +23,13 @@ const FETCH_FUNCTIONS = [
 
 const Media = () => {
   const [data, setData] = useState<{ [key: string]: SearchResult[] }>({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const results = await Promise.all(
           FETCH_FUNCTIONS.map((item) => item.fetcher())
         );
@@ -46,24 +48,44 @@ const Media = () => {
     fetchData();
   }, []);
 
-  if (loading) return;
-  if (error) return <p className="error">{error}</p>;
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <span className="loader"></span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p className="error">{error}</p>;
+  }
 
   return (
     <>
       <Search />
-      <div className="section">
-        {Object.keys(data).map((key) => (
-          <MultipleCards
-            id={`${key.replace(/\s/g, "-").toLowerCase()}`}
-            title={key}
-            results={data[key]}
-            defaultShowOnPage={5}
-            key={key}
-          />
-        ))}
-        <Ad />
-      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -50, scale: 0.95 }}
+        transition={{
+          duration: 0.3,
+          ease: [0.42, 0, 0.58, 1], // Custom easing for a smooth animation
+        }}
+      >
+        <div className="section">
+          {Object.keys(data).map((key) => (
+            <MultipleCards
+              id={`${key.replace(/\s/g, "-").toLowerCase()}`}
+              title={key}
+              results={data[key]}
+              defaultShowOnPage={5}
+              key={key}
+            />
+          ))}
+          <Ad />
+        </div>
+      </motion.div>
       <Footer />
     </>
   );

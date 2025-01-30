@@ -31,7 +31,7 @@ const Search: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (document.documentElement.scrollTop > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);

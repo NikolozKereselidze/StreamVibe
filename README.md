@@ -22,7 +22,7 @@ StreamVibe is your ultimate entertainment hub, designed to keep you updated with
 
 ## 🚀 Live Demo
 
-https://streamvibe.netlify.app/
+https://streamandvibe.netlify.app/
 
 ## 🚀 Installation & Setup
 
